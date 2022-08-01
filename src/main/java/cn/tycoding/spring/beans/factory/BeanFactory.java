@@ -1,7 +1,6 @@
 package cn.tycoding.spring.beans.factory;
 
-import java.util.HashMap;
-import java.util.Map;
+import cn.tycoding.spring.beans.BeansException;
 
 /**
  * Bean容器对象
@@ -9,15 +8,14 @@ import java.util.Map;
  * @author tycoding
  * @since 2022/8/1
  */
-public class BeanFactory {
+public interface BeanFactory {
 
-    private final Map<String, Object> beanMap = new HashMap<>();
-
-    public void registryBean(String name, Object bean) {
-        beanMap.put(name, bean);
-    }
-
-    public Object getBean(String name) {
-        return beanMap.get(name);
-    }
+    /**
+     * 获取Bean对象
+     *
+     * @param name bean名称
+     * @return Bean容器中的bean对象
+     * @throws BeansException
+     */
+    Object getBean(String name) throws BeansException;
 }
