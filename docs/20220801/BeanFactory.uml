@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>D:/develop/project/mini-spring/src/main/java/cn/tycoding/spring/beans/factory</OriginalElement>
+  <nodes>
+    <node x="641.6136363636364" y="147.5">cn.tycoding.spring.beans.factory.BeanFactory</node>
+    <node x="453.0" y="285.0">cn.tycoding.spring.beans.factory.support.AbstractBeanFactory</node>
+    <node x="-173.0" y="471.0">cn.tycoding.spring.beans.factory.config.BeanDefinition</node>
+    <node x="52.0" y="495.5">cn.tycoding.spring.beans.factory.support.BeanDefinitionRegistry</node>
+    <node x="434.0" y="471.0">cn.tycoding.spring.beans.factory.support.AbstractAutowireCapableBeanFactory</node>
+    <node x="340.6136363636364" y="-14.0">cn.tycoding.spring.beans.factory.config.SingletonBeanRegistry</node>
+    <node x="53.613636363636374" y="633.0">cn.tycoding.spring.beans.factory.support.DefaultListableBeanFactory</node>
+    <node x="339.6136363636364" y="123.0">cn.tycoding.spring.beans.factory.support.DefaultSingletonBeanRegistry</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="cn.tycoding.spring.beans.factory.support.AbstractBeanFactory" target="cn.tycoding.spring.beans.factory.support.DefaultSingletonBeanRegistry" relationship="GENERALIZATION">
+      <point x="-126.88636363636363" y="-68.0" />
+      <point x="0.0" y="56.0" />
+    </edge>
+    <edge source="cn.tycoding.spring.beans.factory.support.AbstractBeanFactory" target="cn.tycoding.spring.beans.factory.BeanFactory" relationship="REALIZATION">
+      <point x="130.11363636363637" y="-68.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+    <edge source="cn.tycoding.spring.beans.factory.support.DefaultListableBeanFactory" target="cn.tycoding.spring.beans.factory.config.BeanDefinition" relationship="TO_MANY">
+      <point x="-181.0" y="0.0" />
+      <point x="-70.5" y="689.0" />
+      <point x="0.0" y="56.0" />
+    </edge>
+    <edge source="cn.tycoding.spring.beans.factory.support.DefaultSingletonBeanRegistry" target="cn.tycoding.spring.beans.factory.config.SingletonBeanRegistry" relationship="REALIZATION">
+      <point x="0.0" y="-56.0" />
+      <point x="0.0" y="43.5" />
+    </edge>
+    <edge source="cn.tycoding.spring.beans.factory.support.DefaultListableBeanFactory" target="cn.tycoding.spring.beans.factory.support.AbstractAutowireCapableBeanFactory" relationship="GENERALIZATION">
+      <point x="181.0" y="0.0" />
+      <point x="607.5" y="689.0" />
+      <point x="0.0" y="56.0" />
+    </edge>
+    <edge source="cn.tycoding.spring.beans.factory.support.AbstractAutowireCapableBeanFactory" target="cn.tycoding.spring.beans.factory.support.AbstractBeanFactory" relationship="GENERALIZATION">
+      <point x="0.0" y="-56.0" />
+      <point x="0.0" y="68.0" />
+    </edge>
+    <edge source="cn.tycoding.spring.beans.factory.support.DefaultListableBeanFactory" target="cn.tycoding.spring.beans.factory.support.BeanDefinitionRegistry" relationship="REALIZATION">
+      <point x="-1.613636363636374" y="-56.0" />
+      <point x="0.0" y="31.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="1.1566110397946086" showDependencies="true" x="340.5" y="375.5" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
