@@ -11,16 +11,22 @@ import cn.tycoding.spring.beans.factory.config.BeanDefinition;
  */
 public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFactory {
 
+    /**
+     * 引入实例化策略类
+     * 在Spring源码中，此策略的默认实现类是CglibSubclassingInstantiationStrategy
+     * 本版本中先使用Simple实现类
+     */
+    private InstantiationStrategy instantiationStrategy = new SimpleInstantiationStrategy();
+
     @Override
     protected Object createBean(String name, BeanDefinition beanDefinition) throws BeansException {
         return doCreateBean(name, beanDefinition);
     }
 
     protected Object doCreateBean(String name, BeanDefinition beanDefinition) {
-        Class beanClass = beanDefinition.getBeanClass();
         Object bean = null;
         try {
-            bean = beanClass.newInstance();
+            bean = createBeanInstance(beanDefinition);
         } catch (Exception e) {
             throw new BeansException("Instantiation of bean failed", e);
         }
@@ -29,4 +35,15 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
         return bean;
     }
 
+    protected Object createBeanInstance(BeanDefinition beanDefinition) {
+        return getInstantiationStrategy().instantiate(beanDefinition);
+    }
+
+    public InstantiationStrategy getInstantiationStrategy() {
+        return instantiationStrategy;
+    }
+
+    public void setInstantiationStrategy(InstantiationStrategy instantiationStrategy) {
+        this.instantiationStrategy = instantiationStrategy;
+    }
 }
