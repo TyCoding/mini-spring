@@ -61,6 +61,14 @@ public Object getBean(String name) throws BeansException {
 2. 如果beanMap容器中没有此Bean，先在 `DefaultListableBeanFactory` 中完成Bean初始化操作；
 3. 拿到初始化后的BeanDefinition对象再调用 `AbstractBeanFactory` 的抽象方法 `createBean` 创建Bean；
 
+### createBean() 
+
+此抽象方法由抽象类 `AbstractAutowireCapableBeanFactory` 做具体实现（模板模式）；
+
+### getBeanDefinition()
+
+此抽象方法由抽象类 `DefaultListableBeanFactory` 做具体实现（模板模式）；
+
 ## AbstractAutowireCapableBeanFactory
 
 `AbstractBeanFactory` 接口实现类，负责Bean的创建操作，创建后的Bean将写入到BeanMap容器中；以下是此版本的简易代码实现：
@@ -80,5 +88,40 @@ protected Object doCreateBean(String name, BeanDefinition beanDefinition) {
 }
 ```
 
-1. 拿到初始化后的BeanDefinition对象，获取到Class对象并调用 `newInstance()` 完成Bean创建；
+
 2. 写入到单例BeanMap容器中；
+
+# Test
+
+测试代码如下：
+
+```java
+@Test
+public void getBean() {
+    DefaultListableBeanFactory beanFactory = new DefaultListableBeanFactory();
+    BeanDefinition beanDefinition = new BeanDefinition(HelloService.class);
+    beanFactory.registryBeanDefinition("helloService", beanDefinition);
+
+    HelloService helloService = (HelloService) beanFactory.getBean("helloService");
+    helloService.sayHello();
+
+    Object singletonBean = beanFactory.getSingleton("helloService");
+    System.out.println(singletonBean == null);
+}
+```
+
+1. 通过 `DefaultListableBeanFactory` 初始化 `BeanDefinition` 容器；
+
+![](imgs/MIK-hSf5g0.png)
+
+2. 调用 `getBean()` 判断BeanMap中没有初始化此Bean，因此通过 `BeanDefinition` 对象调用 `newInstance()` 初始化；
+3. 拿到初始化后的BeanDefinition对象，获取到Class对象并调用 `newInstance()` 完成Bean创建；
+4. `newInstance()` 初始化后再写入BeanMap
+
+![](imgs/MIK-RascOE.png)
+
+5. 完成Bean初始化后，再次从BeanMap容器获取Bean发现可以直接拿到了
+
+![](imgs/MIK-sjJPJc.png)
+
+
