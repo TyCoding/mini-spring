@@ -1,7 +1,7 @@
 
 # BeanFactory和BeanDefinition基础实现
 
-> 当前文档对应Git分支：`01-BeanFactory`
+> 当前文档对应Git分支：`01-bean-factory`
 
 ![](imgs/MIK-Jq83Ca.png)
 

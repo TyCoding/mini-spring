@@ -2,11 +2,13 @@
 
 简易Spring框架实现。
 
-学习方式：Git Tree查看分支序号，分支名称对应了文档名称和当前分支代码的
+Spring版本说明：本项目参考 `Spring5.2.x` 以上版本源码。
+
+学习方式：Git Tree查看分支序号，分支名称对应了文档名称和当前分支代码的。
 
 ## Docs
 
-- [x] `01-BeanFactory` [BeanFactory基础实现](docs/01-BeanFactory/README.md)
+- [x] `01-bean-factory` [BeanFactory基础实现](docs/01-bean-factory/README.md)
 
 
 ## Tips
