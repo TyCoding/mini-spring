@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>cn.tycoding.spring.beans.factory.support.AbstractAutowireCapableBeanFactory</OriginalElement>
+  <nodes>
+    <node x="-172.87102863061415" y="25.53503348428245">cn.tycoding.spring.beans.factory.support.CglibSubclassingInstantiationStrategy</node>
+    <node x="252.39019947149734" y="-13.385086112263494">cn.tycoding.spring.beans.factory.support.InstantiationStrategy</node>
+    <node x="-34.91886312344022" y="167.58310213964523">cn.tycoding.spring.beans.factory.support.AbstractAutowireCapableBeanFactory</node>
+    <node x="404.2852594032149" y="208.96725846344236">cn.tycoding.spring.beans.factory.support.SimpleInstantiationStrategy</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="cn.tycoding.spring.beans.factory.support.SimpleInstantiationStrategy" target="cn.tycoding.spring.beans.factory.support.InstantiationStrategy" relationship="REALIZATION">
+      <point x="-2.5940321495454555E-4" y="-31.50025846344235" />
+      <point x="536.785" y="85.0" />
+      <point x="382.39" y="85.0" />
+      <point x="-1.9947149735344283E-4" y="31.500086112263496" />
+    </edge>
+    <edge source="cn.tycoding.spring.beans.factory.support.AbstractAutowireCapableBeanFactory" target="cn.tycoding.spring.beans.factory.support.SimpleInstantiationStrategy" relationship="CREATE">
+      <point x="183.99999999999997" y="-19.11584367620287" />
+      <point x="-132.5" y="0.0" />
+    </edge>
+    <edge source="cn.tycoding.spring.beans.factory.support.CglibSubclassingInstantiationStrategy" target="cn.tycoding.spring.beans.factory.support.InstantiationStrategy" relationship="REALIZATION">
+      <point x="173.50002863061414" y="-14.920033484282449" />
+      <point x="234.89" y="42.115" />
+      <point x="234.89" y="85.0" />
+      <point x="382.39" y="85.0" />
+      <point x="-1.9947149735344283E-4" y="31.500086112263496" />
+    </edge>
+    <edge source="cn.tycoding.spring.beans.factory.support.AbstractAutowireCapableBeanFactory" target="cn.tycoding.spring.beans.factory.support.InstantiationStrategy" relationship="TO_ONE">
+      <point x="176.49999999999997" y="-92.0" />
+      <point x="-56.809062594937586" y="31.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="0.38031253886010363" showDependencies="true" x="154.70301208496085" y="365.2525390625" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
