@@ -1,8 +1,8 @@
 # Bean实例化策略
 
-> 当前文档对应Git分支：`02-BeanInstanceStrategy`
+> 当前文档对应Git分支：`02-bean-instance-strategy`
 
-在上一个分支 [01-BeanFactory](../01-BeanFactory/README.md) 中 `AbstractAutowireCapableBeanFactory` 对象负责Bean的创建操作，
+在上一个分支 [01-bean-factory](../01-bean-factory/README.md) 中 `AbstractAutowireCapableBeanFactory` 对象负责Bean的创建操作，
 当时采用了 `Class.newInstance()` 方法进行Bean实例化创建。
 
 而在Spring源码中，Bean实例化策略接口 `InstantiationStrategy` 对应了两个实现类：

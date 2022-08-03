@@ -24,6 +24,7 @@ public class SimpleInstantiationStrategy implements InstantiationStrategy {
     public Object instantiate(BeanDefinition beanDefinition) throws BeansException {
         Class clazz = beanDefinition.getBeanClass();
         try {
+            // 这里直接使用无参构造实例化
             Constructor constructor = clazz.getDeclaredConstructor();
             return constructor.newInstance();
         } catch (Exception e) {

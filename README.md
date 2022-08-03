@@ -9,7 +9,7 @@ Spring版本说明：本项目参考 `Spring5.2.x` 以上版本源码。
 ## Docs
 
 - [x] `01-bean-factory` [BeanFactory基础实现](docs/01-bean-factory/README.md)
-- [x] `02-BeanInstanceStrategy` [Bean实例化策略](docs/02-bean-instance-strategy/README.md)
+- [x] `02-bean-instance-strategy` [Bean实例化策略](docs/02-bean-instance-strategy/README.md)
 
 
 ## Tips

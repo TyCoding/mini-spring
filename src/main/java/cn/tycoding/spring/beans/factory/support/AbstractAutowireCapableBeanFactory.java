@@ -14,9 +14,8 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
     /**
      * 引入实例化策略类
      * 在Spring源码中，此策略的默认实现类是CglibSubclassingInstantiationStrategy
-     * 本版本中先使用Simple实现类
      */
-    private InstantiationStrategy instantiationStrategy = new SimpleInstantiationStrategy();
+    private InstantiationStrategy instantiationStrategy = new CglibSubclassingInstantiationStrategy();
 
     @Override
     protected Object createBean(String name, BeanDefinition beanDefinition) throws BeansException {
