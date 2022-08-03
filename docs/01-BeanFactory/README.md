@@ -1,7 +1,7 @@
 
 # BeanFactory和BeanDefinition基础实现
 
-> 对应commit日期： `2022-08-01`，版本号：`43257f39`
+> 当前文档对应Git分支：`01-BeanFactory`
 
 ![](imgs/MIK-Jq83Ca.png)
 
