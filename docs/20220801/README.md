@@ -115,8 +115,7 @@ public void getBean() {
 ![](imgs/MIK-hSf5g0.png)
 
 2. 调用 `getBean()` 判断BeanMap中没有初始化此Bean，因此通过 `BeanDefinition` 对象调用 `newInstance()` 初始化；
-3. 拿到初始化后的BeanDefinition对象，获取到Class对象并调用 `newInstance()` 完成Bean创建；
-4. `newInstance()` 初始化后再写入BeanMap
+3. `newInstance()` 初始化后再写入BeanMap
 
 ![](imgs/MIK-RascOE.png)
 
