@@ -119,7 +119,7 @@ public void getBean() {
 
 ![](imgs/MIK-RascOE.png)
 
-5. 完成Bean初始化后，再次从BeanMap容器获取Bean发现可以直接拿到了
+4. 完成Bean初始化后，再次从BeanMap容器get，发现可以直接拿到了Bean对象
 
 ![](imgs/MIK-sjJPJc.png)
 
