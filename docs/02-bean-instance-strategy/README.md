@@ -12,13 +12,20 @@
 
 ![](imgs/MIK-yq7JoT.png)
 
-当前分支Bean实例化仅模拟了 `SimpleInstantiationStrategy` 的使用构造函函数实例化Bean，代码如下：
+![](imgs/MIK-EI79gG.png)
+
+## SimpleInstantiationStrategy
+
+在Spring源码中，`SimpleInstantiationStrategy` 提供了几种简单的实例化Bean的方式，例如使用：构造函数（有参/无参）、BeanFactory（利用反射）；
+
+本例中，模拟了无参构造函数实例化Bean的方式，代码如下：
 
 ```java
 @Override
 public Object instantiate(BeanDefinition beanDefinition) throws BeansException {
     Class clazz = beanDefinition.getBeanClass();
     try {
+        // 这里直接使用无参构造实例化
         Constructor constructor = clazz.getDeclaredConstructor();
         return constructor.newInstance();
     } catch (Exception e) {
@@ -27,5 +34,67 @@ public Object instantiate(BeanDefinition beanDefinition) throws BeansException {
 }
 ```
 
-![](imgs/MIK-EI79gG.png)
+那么再看Spring源码中 `SimpleInstantiationStrategy` 如何实现的：
 
+![](imgs/MIK-bDhucn.png)
+
+![](imgs/MIK-6gQ42z.png)
+
+
+# 扩展
+
+## 几种Bean实例化方式
+
+```java
+public class BeanInstanceTest {
+
+    /**
+     * 无参构造函数实例化Bean
+     */
+    @Test
+    public void t1() throws InstantiationException, IllegalAccessException {
+        BeanInstanceClazz instance = BeanInstanceClazz.class.newInstance();
+        System.out.println(instance);
+    }
+
+    /**
+     * 有参构造函数实例化Bean
+     */
+    @Test
+    public void t2() throws NoSuchMethodException, InvocationTargetException, InstantiationException,
+            IllegalAccessException {
+        Class<BeanInstanceClazz> clazz = BeanInstanceClazz.class;
+        Constructor<BeanInstanceClazz> constructor = clazz.getDeclaredConstructor(String.class);
+        BeanInstanceClazz instance = constructor.newInstance("tycoding");
+        System.out.println(instance.getName());
+    }
+
+    @Test
+    public void t3() {
+        Enhancer enhancer = new Enhancer();
+        enhancer.setSuperclass(BeanInstanceClazz.class);
+        enhancer.setCallback((MethodInterceptor) (obj, method, args, proxy) -> proxy.invokeSuper(obj, args));
+        Object instance = enhancer.create();
+        System.out.println(instance);
+    }
+}
+
+class BeanInstanceClazz {
+    private String name;
+
+    public BeanInstanceClazz() {
+    }
+
+    public BeanInstanceClazz(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+}
+```
+
+## JDK动态代理
+
+## Cglib动态代理
