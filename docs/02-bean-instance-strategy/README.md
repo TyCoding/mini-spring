@@ -41,8 +41,6 @@ public Object instantiate(BeanDefinition beanDefinition) throws BeansException {
 ![](imgs/MIK-6gQ42z.png)
 
 
-# 扩展
-
 ## 几种Bean实例化方式
 
 ```java
@@ -69,6 +67,9 @@ public class BeanInstanceTest {
         System.out.println(instance.getName());
     }
 
+    /**
+     * 使用Cglib实例化Bean
+     */
     @Test
     public void t3() {
         Enhancer enhancer = new Enhancer();
@@ -95,6 +96,116 @@ class BeanInstanceClazz {
 }
 ```
 
+# 代理模式
+
+Java的代理技术主要分为三类：
+1. JDK静态代理 
+2. JDK动态代理 
+3. Cglib动态代理
+
+核心：都是要通过代理类生成被代理类的对象引用，这样就可以实现调用代理类让代理类去调用具体的接口实现，代理类本身不提供服务。
+
+优势：代理也是基于接口实现的，代理本身不提供服务而是通过Java多态方式调用具体的接口实现类完成业务处理，可以解决调用和实现类的解耦。
+
+![](imgs/MIK-4qgBRC.png)
+
+
+## JDK静态代理
+
+`静态代理` 顾名思义，代理是提前写好的因此被称为静态。也就是代理类中已经定义好了接口实现类引用，测试代码如下：
+
+```java
+public class ProxyTest {
+
+    /**
+     * 测试JDK静态代理
+     * JDK静态代理技术。逻辑：
+     * 1.定义接口
+     * 2.定义接口实现类（被代理类）
+     * 3.定义代理类实现接口（包含被代理类的引用），调用被代理类的处理逻辑
+     */
+    @Test
+    public void t1() {
+        JdkStaticProxy proxy = new JdkStaticProxy();
+        proxy.say();
+    }
+}
+
+/**
+ * JDK静态代理类。核心：实现代理接口，包含一个被代理类的对象引用，调用被代理类的处理逻辑
+ */
+class JdkStaticProxy implements ProxyTestInf {
+    private ProxyTestInf inf = new ProxyTestInfImpl();
+
+    @Override
+    public void say() {
+        inf.say();
+    }
+}
+
+/**
+ * 接口
+ */
+interface ProxyTestInf {
+    void say();
+}
+
+/**
+ * 被代理的类
+ */
+class ProxyTestInfImpl implements ProxyTestInf {
+
+    @Override
+    public void say() {
+        System.out.println("this is ProxyTestInfImpl");
+    }
+}
+```
+
+如上，可以看到静态代理一个明显的缺点就是：
+
+对每个接口实现类都要定义一个专属的代理类，这样将会使代码非常臃肿
+
 ## JDK动态代理
+
+`动态代理` 顾名思义，代理类不是提前定义好的，而是在代码运行中动态生成的代理类，测试代码如下：
+
+```java
+public class ProxyTest {
+
+    /**
+     * 测试JDK动态代理
+     */
+    @Test
+    public void t2() {
+        ProxyTestInfImpl impl = new ProxyTestInfImpl();
+        JdkDynamicProxy handler = new JdkDynamicProxy(impl);
+        ProxyTestInf instance = (ProxyTestInf) Proxy.newProxyInstance(handler.getClass().getClassLoader(),
+                impl.getClass().getInterfaces(), handler);
+        System.out.println(instance);
+        instance.say();
+    }
+}
+
+/**
+ * JDK动态代理类。核心：通过反射技术生成代理类
+ */
+class JdkDynamicProxy implements InvocationHandler {
+
+    // 被代理类对象
+    private Object obj;
+
+    public JdkDynamicProxy(Object obj) {
+        this.obj = obj;
+    }
+
+    @Override
+    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+        return method.invoke(obj, args);
+    }
+}
+```
+
+如上明显看到在动态代理中， `Proxy` 代理类中不用再定义每个实现类的引用，而是通过 `method.invoke()` 方法动态生成具体的代理类。
 
 ## Cglib动态代理

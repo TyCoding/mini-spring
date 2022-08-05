@@ -36,25 +36,24 @@ public class ProxyTest {
     @Test
     public void t2() {
         ProxyTestInfImpl impl = new ProxyTestInfImpl();
-        ProxyTestHandler handler = new ProxyTestHandler();
-        Object instance = handler.getProxyInstance(impl);
+        JdkDynamicProxy handler = new JdkDynamicProxy(impl);
+        ProxyTestInf instance = (ProxyTestInf) Proxy.newProxyInstance(handler.getClass().getClassLoader(),
+                impl.getClass().getInterfaces(), handler);
         System.out.println(instance);
-        ProxyTestInf inf = (ProxyTestInf) instance;
-        inf.say();
+        instance.say();
     }
 }
 
 /**
- * JDK动态代理类。核心：通过反射技术
+ * JDK动态代理类。核心：通过反射技术生成代理类
  */
-class ProxyTestHandler implements InvocationHandler {
+class JdkDynamicProxy implements InvocationHandler {
 
     // 被代理类对象
-    Object obj;
+    private Object obj;
 
-    public Object getProxyInstance(Object obj) {
+    public JdkDynamicProxy(Object obj) {
         this.obj = obj;
-        return Proxy.newProxyInstance(obj.getClass().getClassLoader(), obj.getClass().getInterfaces(), this);
     }
 
     @Override

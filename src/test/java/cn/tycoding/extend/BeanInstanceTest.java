@@ -36,6 +36,9 @@ public class BeanInstanceTest {
         System.out.println(instance.getName());
     }
 
+    /**
+     * 使用Cglib实例化Bean
+     */
     @Test
     public void t3() {
         Enhancer enhancer = new Enhancer();
