@@ -1,7 +1,13 @@
 package cn.tycoding.extend;
 
+import net.sf.cglib.proxy.Enhancer;
+import net.sf.cglib.proxy.MethodInterceptor;
 import org.junit.Test;
+import sun.misc.ProxyGenerator;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
@@ -41,6 +47,55 @@ public class ProxyTest {
                 impl.getClass().getInterfaces(), handler);
         System.out.println(instance);
         instance.say();
+    }
+
+    /**
+     * 查看JDK动态代理生成的字节码文件
+     */
+    @Test
+    public void t3() throws Exception {
+        byte[] bytes = ProxyGenerator.generateProxyClass("$ProxyTestInfImpl", new Class[]{ProxyTestInf.class});
+        // 如果Windows系统此路径不在项目target目录下，将 "/target/" 修改为 "//target//"
+        String filePath = System.getProperty("user.dir") + "/target/$ProxyTestInfImpl.class";
+        File file = new File(filePath);
+        FileOutputStream outputStream = new FileOutputStream(file);
+        outputStream.write(bytes);
+        outputStream.flush();
+        outputStream.close();
+    }
+
+    /**
+     * Cglib动态代理，测试实现了接口的类
+     */
+    @Test
+    public void t4() {
+        Enhancer enhancer = new Enhancer();
+        enhancer.setSuperclass(ProxyTestInfImpl.class);
+        enhancer.setCallback((MethodInterceptor) (obj, method, args, proxy) -> proxy.invokeSuper(obj, args));
+        ProxyTestInfImpl impl = (ProxyTestInfImpl) enhancer.create();
+        impl.say();
+    }
+
+    /**
+     * Cglib动态代理，测试未实现任何接口的类
+     */
+    @Test
+    public void t5() {
+        Enhancer enhancer = new Enhancer();
+        enhancer.setSuperclass(CglibProxy.class);
+        enhancer.setCallback((MethodInterceptor) (obj, method, args, proxy) -> proxy.invokeSuper(obj, args));
+        CglibProxy impl = (CglibProxy) enhancer.create();
+        impl.say1();
+        impl.say2();
+    }
+}
+
+class CglibProxy {
+    public void say1() {
+        System.out.println("this CglibProxy say1()");
+    }
+    public void say2() {
+        System.out.println("this CglibProxy say2()");
     }
 }
 

@@ -1,4 +1,4 @@
-# Bean实例化策略
+# Bean实例化策略（动态代理技术）
 
 > 当前文档对应Git分支：`02-bean-instance-strategy`
 
@@ -208,4 +208,144 @@ class JdkDynamicProxy implements InvocationHandler {
 
 如上明显看到在动态代理中， `Proxy` 代理类中不用再定义每个实现类的引用，而是通过 `method.invoke()` 方法动态生成具体的代理类。
 
+### 源码分析
+
+![](imgs/MIK-JgSeT1.png)
+
+首先从 `Proxy.newProxyInstance()` 方法入口：
+
+![](imgs/MIK-bL5vqM.png)
+
+可以看到实际上是由 `getProxyClass0()` 方法生成的Class文件：
+
+![](imgs/MIK-m4Lon6.png)
+
+可以看到在 `proxyClassCache.get()` 上方的注释中写了：
+
+如果给定接口实现类的代理类存在，就返回缓存副本，否则就调用 `ProxyClassFactory` 对象生成代理类
+
+![](imgs/MIK-fkYVmf.png)
+
+看到在Cache对象中，最终是调用Factory对象的 `apply`方法，再往下看apply接口的实现就追溯到了 `ProxyClassFactory` 对象。
+
+接着往下看：
+
+![](imgs/MIK-ft8NGl.png)
+
+可以看到最终是调用 `ProxyGenerator.generateProxyClass()` 创建的代理类对象：
+
+![](imgs/MIK-bSailG.png)
+
+至此，动态代理创建的Class文件已经生成，下面我们Debug试一下
+
+### Debug
+
+![](imgs/MIK-waqAlF.png)
+
+JDK动态代理实际上最终是通过 `ProxyGenerator` 对象动态生成的字节码文件。
+
+通过Debug `ProxyGenerator` 对象可以看到大致的字节码信息（因为这里IDEA显示乱码，就不再看了），最终此方法返回的是动态代理类的二进制数组：
+
+![](imgs/MIK-MVHbgC.png)
+
+### 查看动态代理Class文件
+
+通过分析上述源码，发现实际上可以直接调用 `ProxyGenerator` 类生成字节码文件的byte数组，然后再手动写入到Class文件中即可。
+
+编写如下测试代码：
+
+```java
+/**
+ * 查看JDK动态代理生成的字节码文件
+ */
+@Test
+public void t3() throws Exception {
+    byte[] bytes = ProxyGenerator.generateProxyClass("$ProxyTestInfImpl", new Class[]{ProxyTestInf.class});
+    // 如果Windows系统此路径不在项目target目录下，将 "/target/" 修改为 "//target//"
+    String filePath = System.getProperty("user.dir") + "/target/$ProxyTestInfImpl.class";
+    File file = new File(filePath);
+    FileOutputStream outputStream = new FileOutputStream(file);
+    outputStream.write(bytes);
+    outputStream.flush();
+    outputStream.close();
+}
+```
+
+运行后可以在项目根目录target文件夹下找到 `$ProxyTestInfImpl.class` 这个文件：
+
+![](imgs/MIK-n0iW0w.png)
+
+在IDEA中双击即可反编译这个Class文件：
+
+![](imgs/MIK-SW73ky.png)
+
+可以看到，通过JDK动态代理生成的代理类有如下特点：
+
+1. 继承Proxy类，并且实现了指定的代理接口
+2. 实现了代理接口中的函数
+3. 代理类中的函数并不处理具体逻辑，而是通过 `InvocationHandler.invoke()` 调用具体实现类的函数处理
+
 ## Cglib动态代理
+
+上面分析了JDK的动态代理设计，Cglib的设计思路也类似，下面先看测试方法：
+
+```java
+/**
+ * Cglib动态代理，测试实现了接口的类
+ */
+@Test
+public void t4() {
+    Enhancer enhancer = new Enhancer();
+    enhancer.setSuperclass(ProxyTestInfImpl.class);
+    enhancer.setCallback((MethodInterceptor) (obj, method, args, proxy) -> proxy.invokeSuper(obj, args));
+    ProxyTestInfImpl impl = (ProxyTestInfImpl) enhancer.create();
+    impl.say();
+}
+```
+
+同样，我们以 `ProxyTestInfImpl` 作为被代理类。
+
+可以看到生成代理类的核心是 `proxy.invokeSuper()` 方法（`create()`方法是用来构建Class对象信息），Debug查看源码：
+
+![](imgs/MIK-WQjfmb.png)
+
+从源码上看，并没有JDK动态代理那样复杂的逻辑，但是可以明显的看到，在sig变量中存储了`say()`这个方法，
+
+其实这是因为Cglib的 `FashClassInfo` 对象对Class做了特殊处理，直接存储了代理类的方法引用，因此无需再通过反射技术生成代理方法。
+
+![](imgs/MIK-mnvq6l.png)
+
+特别的是，Cglib并不要求被代理类必须实现接口（JDK动态代理是严格要求要实现接口的），下面增加测试方法：
+
+```java
+public class ProxyTest {
+    /**
+     * Cglib动态代理，测试未实现任何接口的类
+     */
+    @Test
+    public void t5() {
+        Enhancer enhancer = new Enhancer();
+        enhancer.setSuperclass(CglibProxy.class);
+        enhancer.setCallback((MethodInterceptor) (obj, method, args, proxy) -> proxy.invokeSuper(obj, args));
+        CglibProxy impl = (CglibProxy) enhancer.create();
+        impl.say1();
+        impl.say2();
+    }
+}
+
+class CglibProxy {
+    public void say1() {
+        System.out.println("this CglibProxy say1()");
+    }
+    public void say2() {
+        System.out.println("this CglibProxy say2()");
+    }
+}
+```
+
+![](imgs/MIK-XRwTAe.png)
+
+可以看到，当被代理类中出现多个函数的时候，此断点会重复进入并且sig也会随之改变。
+
+因此可以明白，Cglib的FastClassInfo对Class做了特殊处理，将函数信息存放在类似数组的变量中，然后从数组中拿到具体某个函数的引用
+

@@ -4,14 +4,15 @@
 
 版本说明：
 - JDK版本：`1.8`
-- Spring版本： `Spring5.2.x` 以上
+- Cglib版本：`3.3.0`
+- Spring版本： `Spring5.2.x`
 
-学习方式：Git Tree查看分支序号，分支名称对应了文档名称和当前分支代码的。
+学习方式：Git Tree查看分支列表，分支名称对应了文档所在文件夹名称。
 
 ## Docs
 
 - [x] `01-bean-factory` [BeanFactory基础实现](docs/01-bean-factory/README.md)
-- [x] `02-bean-instance-strategy` [Bean实例化策略（动态代理）](docs/02-bean-instance-strategy/README.md)
+- [x] `02-bean-instance-strategy` [Bean实例化策略（JDK和Cglib动态代理）](docs/02-bean-instance-strategy/README.md)
 
 
 ## Tips
