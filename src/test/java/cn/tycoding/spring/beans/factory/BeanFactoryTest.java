@@ -3,6 +3,7 @@ package cn.tycoding.spring.beans.factory;
 import cn.tycoding.spring.beans.MutablePropertyValues;
 import cn.tycoding.spring.beans.PropertyValue;
 import cn.tycoding.spring.beans.factory.config.BeanDefinition;
+import cn.tycoding.spring.beans.factory.config.BeanReference;
 import cn.tycoding.spring.beans.factory.support.DefaultListableBeanFactory;
 import org.junit.Test;
 
@@ -35,6 +36,32 @@ public class BeanFactoryTest {
         MutablePropertyValues propertyValues = new MutablePropertyValues();
         propertyValues.addPropertyValue(new PropertyValue("name", "tycoding"));
         propertyValues.addPropertyValue(new PropertyValue("des", "hello"));
+        BeanDefinition beanDefinition = new BeanDefinition(HelloService.class, propertyValues);
+        beanFactory.registryBeanDefinition("helloService", beanDefinition);
+
+        HelloService helloService = (HelloService) beanFactory.getBean("helloService");
+        helloService.sayHello();
+        System.out.println(helloService);
+    }
+
+    /**
+     * 测试包含Bean引用的Bean属性填充
+     */
+    @Test
+    public void setBeanPropertyBeanValue() {
+        DefaultListableBeanFactory beanFactory = new DefaultListableBeanFactory();
+
+        // 注入Hello Bean
+        MutablePropertyValues beanPros = new MutablePropertyValues();
+        beanPros.addPropertyValue(new PropertyValue("msg", "this hello bean"));
+        BeanDefinition helloDef = new BeanDefinition(Hello.class, beanPros);
+        beanFactory.registryBeanDefinition("hello", helloDef);
+
+        // 注入HelloService Bean
+        MutablePropertyValues propertyValues = new MutablePropertyValues();
+        propertyValues.addPropertyValue(new PropertyValue("name", "tycoding"));
+        propertyValues.addPropertyValue(new PropertyValue("des", "hello"));
+        propertyValues.addPropertyValue(new PropertyValue("hello", new BeanReference("hello")));
         BeanDefinition beanDefinition = new BeanDefinition(HelloService.class, propertyValues);
         beanFactory.registryBeanDefinition("helloService", beanDefinition);
 
