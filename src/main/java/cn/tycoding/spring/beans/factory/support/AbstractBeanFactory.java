@@ -13,31 +13,31 @@ import cn.tycoding.spring.beans.factory.config.BeanDefinition;
 public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry implements BeanFactory {
 
     @Override
-    public Object getBean(String name) throws BeansException {
-        Object bean = getSingleton(name);
+    public Object getBean(String beanName) throws BeansException {
+        Object bean = getSingleton(beanName);
         if (bean != null) {
             return bean;
         }
-        BeanDefinition beanDefinition = getBeanDefinition(name);
-        return createBean(name, beanDefinition);
+        BeanDefinition beanDefinition = getBeanDefinition(beanName);
+        return createBean(beanName, beanDefinition);
     }
 
     /**
      * 创建Bean对象
      *
-     * @param name           bean名称
+     * @param beanName       bean名称
      * @param beanDefinition bean实例
      * @return bean对象
      * @throws BeansException
      */
-    protected abstract Object createBean(String name, BeanDefinition beanDefinition) throws BeansException;
+    protected abstract Object createBean(String beanName, BeanDefinition beanDefinition) throws BeansException;
 
     /**
      * 获取Bean实例
      *
-     * @param name bean名称
+     * @param beanName bean名称
      * @return Bean实例
      * @throws BeansException
      */
-    protected abstract BeanDefinition getBeanDefinition(String name) throws BeansException;
+    protected abstract BeanDefinition getBeanDefinition(String beanName) throws BeansException;
 }

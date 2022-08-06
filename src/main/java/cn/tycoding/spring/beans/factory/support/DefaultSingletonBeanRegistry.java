@@ -16,13 +16,13 @@ public class DefaultSingletonBeanRegistry implements SingletonBeanRegistry {
     private final Map<String, Object> singletonObjects = new HashMap<>();
 
     @Override
-    public void registrySingleton(String name, Object bean) {
-        singletonObjects.put(name, bean);
+    public void registrySingleton(String beanName, Object bean) {
+        singletonObjects.put(beanName, bean);
     }
 
     @Override
-    public Object getSingleton(String name) {
-        return singletonObjects.get(name);
+    public Object getSingleton(String beanName) {
+        return singletonObjects.get(beanName);
     }
 
 

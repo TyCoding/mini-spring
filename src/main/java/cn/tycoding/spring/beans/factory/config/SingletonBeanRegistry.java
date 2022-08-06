@@ -11,16 +11,16 @@ public interface SingletonBeanRegistry {
     /**
      * 注册单例Bean
      *
-     * @param name Bean名称
-     * @param bean Bean对象
+     * @param beanName Bean名称
+     * @param bean     Bean对象
      */
-    void registrySingleton(String name, Object bean);
+    void registrySingleton(String beanName, Object bean);
 
     /**
      * 获取单例Bean
      *
-     * @param name bean名称
+     * @param beanName bean名称
      * @return Bean对象
      */
-    Object getSingleton(String name);
+    Object getSingleton(String beanName);
 }

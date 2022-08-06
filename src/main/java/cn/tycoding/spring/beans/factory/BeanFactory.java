@@ -17,5 +17,5 @@ public interface BeanFactory {
      * @return Bean容器中的bean对象
      * @throws BeansException
      */
-    Object getBean(String name) throws BeansException;
+    Object getBean(String beanName) throws BeansException;
 }
