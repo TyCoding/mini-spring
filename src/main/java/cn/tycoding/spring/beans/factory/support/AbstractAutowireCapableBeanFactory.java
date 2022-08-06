@@ -4,6 +4,7 @@ import cn.hutool.core.bean.BeanUtil;
 import cn.tycoding.spring.beans.BeansException;
 import cn.tycoding.spring.beans.PropertyValue;
 import cn.tycoding.spring.beans.factory.config.BeanDefinition;
+import cn.tycoding.spring.beans.factory.config.BeanReference;
 
 import java.lang.reflect.Method;
 
@@ -55,6 +56,13 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
                 String name = pv.getName();
                 // 属性值
                 Object value = pv.getValue();
+
+                // 判断value是否是其他Bean的引用
+                if (value instanceof BeanReference) {
+                    // 如果存在引用就先实例化此Bean
+                    BeanReference br = (BeanReference) value;
+                    value = getBean(br.getBeanName());
+                }
 
                 // 这里使用Hutool的工具类，利用反射填充属性
                 BeanUtil.setFieldValue(bean, name, value);

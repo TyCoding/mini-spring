@@ -133,3 +133,121 @@ protected Object doCreateBean(String beanName, BeanDefinition beanDefinition) {
     return bean;
 }
 ```
+
+增加测试类：
+
+```java
+/**
+ * 测试填充Bean属性
+ */
+@Test
+public void setBeanPropertyValues() {
+    DefaultListableBeanFactory beanFactory = new DefaultListableBeanFactory();
+    // 设置Bean属性
+    MutablePropertyValues propertyValues = new MutablePropertyValues();
+    propertyValues.addPropertyValue(new PropertyValue("name", "tycoding"));
+    propertyValues.addPropertyValue(new PropertyValue("des", "hello"));
+    BeanDefinition beanDefinition = new BeanDefinition(HelloService.class, propertyValues);
+    beanFactory.registryBeanDefinition("helloService", beanDefinition);
+
+    HelloService helloService = (HelloService) beanFactory.getBean("helloService");
+    helloService.sayHello();
+    System.out.println(helloService);
+}
+```
+
+## Bean引用注入
+
+当Bean属性中包含其他的Bean的引用，应该先实例化此Bean再进行注入引用。
+
+在Spring中涉及了相关解决循环依赖等复杂的逻辑，这里仅仅简单处理，代码如下：
+
+首先增加`BeanReference`：
+
+```java
+public class BeanReference {
+
+    private final String beanName;
+
+    public BeanReference(String beanName) {
+        this.beanName = beanName;
+    }
+
+    public String getBeanName() {
+        return beanName;
+    }
+}
+```
+
+修改之前填充Bean属性的逻辑：
+
+```java
+protected void applyPropertyValues(String beanName, Object bean, BeanDefinition beanDefinition) {
+    try {
+        // 遍历属性信息，通过反射写入属性信息（反射拿到属性的setter方法填充）
+        for (PropertyValue pv : beanDefinition.getPropertyValues().getPropertyValues()) {
+            // 属性名称，此名称必须有对应的setter方法，不然无法填充
+            String name = pv.getName();
+            // 属性值
+            Object value = pv.getValue();
+            
+            // 判断value是否是其他Bean的引用
+            if (value instanceof BeanReference) {
+                // 如果存在引用就先实例化此Bean
+                BeanReference br = (BeanReference) value;
+                value = getBean(br.getBeanName());
+            }
+
+            // 这里使用Hutool的工具类，利用反射填充属性
+            BeanUtil.setFieldValue(bean, name, value);
+        }
+    } catch (Exception e) {
+        throw new BeansException("Error setting property values for bean: " + beanName, e);
+    }
+}
+```
+
+增加测试类：
+
+```java
+/**
+ * 测试包含Bean引用的Bean属性填充
+ */
+@Test
+public void setBeanPropertyBeanValue() {
+    DefaultListableBeanFactory beanFactory = new DefaultListableBeanFactory();
+
+    // 注入Hello Bean
+    MutablePropertyValues beanPros = new MutablePropertyValues();
+    beanPros.addPropertyValue(new PropertyValue("msg", "this hello bean"));
+    BeanDefinition helloDef = new BeanDefinition(Hello.class, beanPros);
+    beanFactory.registryBeanDefinition("hello", helloDef);
+
+    // 注入HelloService Bean
+    MutablePropertyValues propertyValues = new MutablePropertyValues();
+    propertyValues.addPropertyValue(new PropertyValue("name", "tycoding"));
+    propertyValues.addPropertyValue(new PropertyValue("des", "hello"));
+    propertyValues.addPropertyValue(new PropertyValue("hello", new BeanReference("hello")));
+    BeanDefinition beanDefinition = new BeanDefinition(HelloService.class, propertyValues);
+    beanFactory.registryBeanDefinition("helloService", beanDefinition);
+
+    HelloService helloService = (HelloService) beanFactory.getBean("helloService");
+    helloService.sayHello();
+    System.out.println(helloService);
+}
+```
+
+![](imgs/MIK-NiBs0B.png)
+
+当我们手动Evaluate Expression代码`BeanUtil.setFieldValue()`代码后，可以看到`name` 属性已经被填充了值。
+
+![](imgs/MIK-D98O0U.png)
+
+可以看到当Bean属性中存在其他Bean引用时，需要实例化其他Bean，然后将此引用作为属性值填充到当前Bean中。
+
+执行结果：
+
+```java
+HelloService sayHello()
+HelloService{name='tycoding', des='hello', hello=Hello{msg='this hello bean'}}
+```

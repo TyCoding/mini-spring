@@ -8,6 +8,7 @@ public class HelloService {
 
     private String name;
     private String des;
+    private Hello hello;
 
     public void sayHello() {
         System.out.println("HelloService sayHello()");
@@ -29,11 +30,16 @@ public class HelloService {
         this.des = des;
     }
 
+    public Hello getHello() {
+        return hello;
+    }
+
+    public void setHello(Hello hello) {
+        this.hello = hello;
+    }
+
     @Override
     public String toString() {
-        return "HelloService{" +
-                "name='" + name + '\'' +
-                ", des='" + des + '\'' +
-                '}';
+        return "HelloService{" + "name='" + name + '\'' + ", des='" + des + '\'' + ", hello=" + hello + '}';
     }
 }
