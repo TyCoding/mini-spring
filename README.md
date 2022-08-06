@@ -12,7 +12,7 @@ mini版Spring框架实现。
 
 - [x] `01-bean-factory` [BeanFactory基础实现](docs/01-bean-factory/README.md)
 - [x] `02-bean-instance-strategy` [Bean实例化策略（JDK和Cglib动态代理）](docs/02-bean-instance-strategy/README.md)
-- [x] `03-bean-property-value` [为Bean填充属性信息](docs/03-bean-property-value/README.md)
+- [x] `03-bean-property-value` [填充Bean属性信息](docs/03-bean-property-value/README.md)
 
 
 ## Tips

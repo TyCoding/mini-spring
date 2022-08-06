@@ -1,4 +1,4 @@
-# 为Bean填充属性信息
+# 填充Bean属性信息
 
 > 当前文档对应Git分支：`03-bean-property-value`
 
