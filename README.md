@@ -1,6 +1,6 @@
 # Mini-Spring
 
-mini版Spring框架实现。
+Mini版Spring框架实现。
 
 版本说明：
 - 参考JDK源码版本：`1.8`
