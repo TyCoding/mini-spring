@@ -13,7 +13,7 @@ public interface BeanFactory {
     /**
      * 获取Bean对象
      *
-     * @param name bean名称
+     * @param beanName bean名称
      * @return Bean容器中的bean对象
      * @throws BeansException
      */
