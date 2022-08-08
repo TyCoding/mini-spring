@@ -11,6 +11,12 @@ import cn.tycoding.spring.beans.MutablePropertyValues;
 public class BeanDefinition {
 
     /**
+     * Bean单例还是多例
+     */
+    private static String SCOPE_SINGLETON = "singleton";
+    private static String SCOPE_PROTOTYPE = "prototype";
+
+    /**
      * Class信息
      */
     private Class beanClass;
@@ -19,6 +25,24 @@ public class BeanDefinition {
      * 属性信息
      */
     private MutablePropertyValues propertyValues;
+
+    /**
+     * 默认初始化方法
+     */
+    private String initMethod;
+
+    /**
+     * 默认销毁方法
+     */
+    private String destroyMethod;
+
+    /**
+     * 默认单例模式
+     */
+    private String scope = SCOPE_SINGLETON;
+
+    private boolean singleton = true;
+    private boolean prototype = false;
 
     public BeanDefinition(Class beanClass) {
         this(beanClass, null);
@@ -43,5 +67,47 @@ public class BeanDefinition {
 
     public void setPropertyValues(MutablePropertyValues propertyValues) {
         this.propertyValues = propertyValues;
+    }
+
+    public String getInitMethod() {
+        return initMethod;
+    }
+
+    public void setInitMethod(String initMethod) {
+        this.initMethod = initMethod;
+    }
+
+    public String getDestroyMethod() {
+        return destroyMethod;
+    }
+
+    public void setDestroyMethod(String destroyMethod) {
+        this.destroyMethod = destroyMethod;
+    }
+
+    public String getScope() {
+        return scope;
+    }
+
+    public void setScope(String scope) {
+        this.scope = scope == null ? SCOPE_SINGLETON : scope;
+        this.singleton = SCOPE_SINGLETON.equalsIgnoreCase(scope);
+        this.prototype = SCOPE_PROTOTYPE.equalsIgnoreCase(scope);
+    }
+
+    public boolean isSingleton() {
+        return singleton;
+    }
+
+    public void setSingleton(boolean singleton) {
+        this.singleton = singleton;
+    }
+
+    public boolean isPrototype() {
+        return prototype;
+    }
+
+    public void setPrototype(boolean prototype) {
+        this.prototype = prototype;
     }
 }
