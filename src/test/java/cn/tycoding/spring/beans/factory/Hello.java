@@ -8,6 +8,8 @@ public class Hello {
 
     private String msg;
 
+    private String des;
+
     public String getMsg() {
         return msg;
     }
@@ -16,10 +18,19 @@ public class Hello {
         this.msg = msg;
     }
 
+    public String getDes() {
+        return des;
+    }
+
+    public void setDes(String des) {
+        this.des = des;
+    }
+
     @Override
     public String toString() {
         return "Hello{" +
                 "msg='" + msg + '\'' +
+                ", des='" + des + '\'' +
                 '}';
     }
 }

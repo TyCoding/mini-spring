@@ -12,5 +12,11 @@ import cn.tycoding.spring.beans.BeansException;
  */
 public interface BeanFactoryPostProcessor {
 
-    void postProcessorBeanFactory() throws BeansException;
+    /**
+     * Bean实例化前的处理器
+     *
+     * @param beanFactory 工厂对象
+     * @throws BeansException
+     */
+    void postProcessorBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException;
 }
