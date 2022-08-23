@@ -16,6 +16,7 @@ Mini版Spring框架实现。
 - [x] `04-resource-loader` [资源加载器](docs/04-resource-loader/README.md)
 - [x] `05-xml-bean-definition` [XML文件装配Bean](docs/05-xml-bean-definition/README.md)
 - [x] `06-bean-processor` [Bean容器扩展机制](docs/06-bean-processor/README.md)
+- [x] `07-application-context` [应用上下文](docs/07-application-context/README.md)
 
 
 ## Tips

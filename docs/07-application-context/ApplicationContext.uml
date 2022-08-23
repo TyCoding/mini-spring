@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>cn.tycoding.spring.context.ApplicationContext</OriginalElement>
+  <nodes>
+    <node x="50.0" y="64.0">cn.tycoding.spring.beans.factory.HierarchicalBeanFactory</node>
+    <node x="-129.0" y="376.0">cn.tycoding.spring.context.support.AbstractRefreshableApplicationContext</node>
+    <node x="-51.5" y="142.0">cn.tycoding.spring.context.ApplicationContext</node>
+    <node x="-101.0" y="220.0">cn.tycoding.spring.context.ConfigurableApplicationContext</node>
+    <node x="-98.0" y="454.0">cn.tycoding.spring.context.support.AbstractXmlApplicationContext</node>
+    <node x="-177.0" y="64.0">cn.tycoding.spring.beans.factory.ListableBeanFactory</node>
+    <node x="-84.0" y="298.0">cn.tycoding.spring.context.support.AbstractApplicationContext</node>
+    <node x="-103.5" y="532.0">cn.tycoding.spring.context.support.ClassPathXmlApplicationContext</node>
+    <node x="-26.0" y="-14.0">cn.tycoding.spring.beans.factory.BeanFactory</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="cn.tycoding.spring.context.ApplicationContext" target="cn.tycoding.spring.beans.factory.HierarchicalBeanFactory" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="48.0" y="117.0" />
+      <point x="169.5" y="117.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="cn.tycoding.spring.beans.factory.ListableBeanFactory" target="cn.tycoding.spring.beans.factory.BeanFactory" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="-73.5" y="39.0" />
+      <point x="48.0" y="39.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="cn.tycoding.spring.beans.factory.HierarchicalBeanFactory" target="cn.tycoding.spring.beans.factory.BeanFactory" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="169.5" y="39.0" />
+      <point x="48.0" y="39.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="cn.tycoding.spring.context.support.AbstractRefreshableApplicationContext" target="cn.tycoding.spring.context.support.AbstractApplicationContext" relationship="GENERALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="cn.tycoding.spring.context.ApplicationContext" target="cn.tycoding.spring.beans.factory.ListableBeanFactory" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="48.0" y="117.0" />
+      <point x="-73.5" y="117.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="cn.tycoding.spring.context.support.AbstractApplicationContext" target="cn.tycoding.spring.context.ConfigurableApplicationContext" relationship="REALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="cn.tycoding.spring.context.ConfigurableApplicationContext" target="cn.tycoding.spring.context.ApplicationContext" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="cn.tycoding.spring.context.support.AbstractXmlApplicationContext" target="cn.tycoding.spring.context.support.AbstractRefreshableApplicationContext" relationship="GENERALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="cn.tycoding.spring.context.support.ClassPathXmlApplicationContext" target="cn.tycoding.spring.context.support.AbstractXmlApplicationContext" relationship="GENERALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="1.0" showDependencies="false" x="356.0" y="326.0" />
+  <SelectedNodes />
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

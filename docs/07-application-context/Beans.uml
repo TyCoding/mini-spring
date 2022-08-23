@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>/Users/tycoding/data/project/mini-spring/src/main/java/cn/tycoding/spring/beans</OriginalElement>
+  <nodes>
+    <node x="131.0" y="690.0">cn.tycoding.spring.beans.MutablePropertyValues</node>
+    <node x="-137.0" y="461.0">cn.tycoding.spring.beans.factory.support.BeanDefinitionReader</node>
+    <node x="-172.0" y="230.0">cn.tycoding.spring.beans.factory.config.AutowireCapableBeanFactory</node>
+    <node x="-75.4952830188679" y="310.0">cn.tycoding.spring.beans.factory.support.AbstractAutowireCapableBeanFactory</node>
+    <node x="371.6297169811321" y="66.0">cn.tycoding.spring.beans.factory.HierarchicalBeanFactory</node>
+    <node x="248.0" y="763.0">cn.tycoding.spring.beans.PropertyValue</node>
+    <node x="155.0" y="539.0">cn.tycoding.spring.beans.factory.support.CglibSubclassingInstantiationStrategy</node>
+    <node x="-172.0" y="763.0">cn.tycoding.spring.beans.factory.config.BeanReference</node>
+    <node x="403.0" y="690.0">cn.tycoding.spring.beans.factory.config.BeanPostProcessor</node>
+    <node x="-153.5" y="617.0">cn.tycoding.spring.beans.factory.xml.XmlBeanDefinitionReader</node>
+    <node x="381.5" y="461.0">cn.tycoding.spring.beans.factory.support.InstantiationStrategy</node>
+    <node x="283.0047169811321" y="388.0">cn.tycoding.spring.beans.factory.support.DefaultListableBeanFactory</node>
+    <node x="39.0" y="763.0">cn.tycoding.spring.beans.factory.config.BeanDefinition</node>
+    <node x="411.6556603773586" y="-14.0">cn.tycoding.spring.beans.factory.BeanFactory</node>
+    <node x="630.6297169811321" y="66.0">cn.tycoding.spring.beans.factory.ListableBeanFactory</node>
+    <node x="199.41037735849062" y="230.0">cn.tycoding.spring.beans.factory.support.AbstractBeanFactory</node>
+    <node x="127.6297169811321" y="66.0">cn.tycoding.spring.beans.factory.config.SingletonBeanRegistry</node>
+    <node x="517.0" y="539.0">cn.tycoding.spring.beans.factory.support.SimpleInstantiationStrategy</node>
+    <node x="329.1297169811321" y="310.0">cn.tycoding.spring.beans.factory.config.ConfigurableListableBeanFactory</node>
+    <node x="355.3797169811321" y="148.0">cn.tycoding.spring.beans.factory.config.ConfigurableBeanFactory</node>
+    <node x="-172.0" y="690.0">cn.tycoding.spring.beans.factory.config.BeanFactoryPostProcessor</node>
+    <node x="647.0" y="690.0">cn.tycoding.spring.beans.BeansException</node>
+    <node x="659.1297169811321" y="310.0">cn.tycoding.spring.beans.factory.support.BeanDefinitionRegistry</node>
+    <node x="-172.0" y="539.0">cn.tycoding.spring.beans.factory.support.AbstractBeanDefinitionReader</node>
+    <node x="56.379716981132106" y="148.0">cn.tycoding.spring.beans.factory.support.DefaultSingletonBeanRegistry</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="cn.tycoding.spring.beans.factory.support.SimpleInstantiationStrategy" target="cn.tycoding.spring.beans.factory.support.InstantiationStrategy" relationship="REALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="648.0" y="514.0" />
+      <point x="487.0" y="514.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="cn.tycoding.spring.beans.factory.support.AbstractBeanFactory" target="cn.tycoding.spring.beans.factory.support.DefaultSingletonBeanRegistry" relationship="GENERALIZATION">
+      <point x="-53.25" y="-14.0" />
+      <point x="252.66037735849062" y="203.0" />
+      <point x="195.8797169811321" y="203.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="cn.tycoding.spring.beans.factory.support.AbstractAutowireCapableBeanFactory" target="cn.tycoding.spring.beans.factory.config.AutowireCapableBeanFactory" relationship="REALIZATION">
+      <point x="-86.0" y="-14.0" />
+      <point x="10.504716981132106" y="289.0" />
+      <point x="-102.25" y="289.0" />
+      <point x="-69.75" y="14.0" />
+    </edge>
+    <edge source="cn.tycoding.spring.beans.factory.xml.XmlBeanDefinitionReader" target="cn.tycoding.spring.beans.factory.support.AbstractBeanDefinitionReader" relationship="GENERALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="cn.tycoding.spring.beans.factory.config.ConfigurableListableBeanFactory" target="cn.tycoding.spring.beans.factory.config.ConfigurableBeanFactory" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="484.1297169811321" y="203.0" />
+      <point x="540.6297169811321" y="203.0" />
+      <point x="61.75" y="14.0" />
+    </edge>
+    <edge source="cn.tycoding.spring.beans.factory.ListableBeanFactory" target="cn.tycoding.spring.beans.factory.BeanFactory" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="734.1297169811321" y="40.0" />
+      <point x="485.6556603773586" y="40.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="cn.tycoding.spring.beans.factory.config.AutowireCapableBeanFactory" target="cn.tycoding.spring.beans.factory.BeanFactory" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="-32.49999999999994" y="40.0" />
+      <point x="485.6556603773586" y="40.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="cn.tycoding.spring.beans.factory.support.CglibSubclassingInstantiationStrategy" target="cn.tycoding.spring.beans.factory.support.InstantiationStrategy" relationship="REALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="326.0" y="514.0" />
+      <point x="487.0" y="514.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="cn.tycoding.spring.beans.factory.support.DefaultSingletonBeanRegistry" target="cn.tycoding.spring.beans.factory.config.SingletonBeanRegistry" relationship="REALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="195.8797169811321" y="121.0" />
+      <point x="183.6297169811321" y="121.0" />
+      <point x="-56.0" y="14.0" />
+    </edge>
+    <edge source="cn.tycoding.spring.beans.factory.config.ConfigurableBeanFactory" target="cn.tycoding.spring.beans.factory.config.SingletonBeanRegistry" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="478.8797169811321" y="121.0" />
+      <point x="295.6297169811321" y="121.0" />
+      <point x="56.0" y="14.0" />
+    </edge>
+    <edge source="cn.tycoding.spring.beans.factory.support.AbstractAutowireCapableBeanFactory" target="cn.tycoding.spring.beans.factory.support.AbstractBeanFactory" relationship="GENERALIZATION">
+      <point x="86.0" y="-14.0" />
+      <point x="182.5047169811321" y="289.0" />
+      <point x="305.9103773584906" y="289.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="cn.tycoding.spring.beans.factory.support.DefaultListableBeanFactory" target="cn.tycoding.spring.beans.factory.support.AbstractAutowireCapableBeanFactory" relationship="GENERALIZATION">
+      <point x="-65.5" y="-14.0" />
+      <point x="348.5047169811321" y="368.0" />
+      <point x="96.5047169811321" y="368.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="cn.tycoding.spring.beans.factory.support.AbstractBeanFactory" target="cn.tycoding.spring.beans.factory.config.ConfigurableBeanFactory" relationship="REALIZATION">
+      <point x="53.25" y="-14.0" />
+      <point x="359.1603773584907" y="203.0" />
+      <point x="417.1297169811321" y="203.0" />
+      <point x="-61.75" y="14.0" />
+    </edge>
+    <edge source="cn.tycoding.spring.beans.factory.HierarchicalBeanFactory" target="cn.tycoding.spring.beans.factory.BeanFactory" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="491.1297169811321" y="40.0" />
+      <point x="485.6556603773586" y="40.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="cn.tycoding.spring.beans.factory.config.ConfigurableListableBeanFactory" target="cn.tycoding.spring.beans.factory.ListableBeanFactory" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="484.1297169811321" y="279.0" />
+      <point x="734.1297169811321" y="279.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="cn.tycoding.spring.beans.factory.support.DefaultListableBeanFactory" target="cn.tycoding.spring.beans.factory.config.ConfigurableListableBeanFactory" relationship="REALIZATION">
+      <point x="65.5" y="-14.0" />
+      <point x="479.5047169811321" y="368.0" />
+      <point x="628.1297169811321" y="368.0" />
+      <point x="628.1297169811321" y="358.0" />
+      <point x="484.1297169811321" y="358.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="cn.tycoding.spring.beans.factory.config.ConfigurableListableBeanFactory" target="cn.tycoding.spring.beans.factory.config.AutowireCapableBeanFactory" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="484.1297169811321" y="279.0" />
+      <point x="37.25" y="279.0" />
+      <point x="69.75" y="14.0" />
+    </edge>
+    <edge source="cn.tycoding.spring.beans.factory.support.AbstractBeanDefinitionReader" target="cn.tycoding.spring.beans.factory.support.BeanDefinitionReader" relationship="REALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="cn.tycoding.spring.beans.factory.support.DefaultListableBeanFactory" target="cn.tycoding.spring.beans.factory.support.BeanDefinitionRegistry" relationship="REALIZATION">
+      <point x="65.5" y="-14.0" />
+      <point x="479.5047169811321" y="368.0" />
+      <point x="628.1297169811321" y="368.0" />
+      <point x="628.1297169811321" y="358.0" />
+      <point x="772.1297169811321" y="358.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="cn.tycoding.spring.beans.factory.config.ConfigurableBeanFactory" target="cn.tycoding.spring.beans.factory.HierarchicalBeanFactory" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="478.8797169811321" y="121.0" />
+      <point x="491.1297169811321" y="121.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="1.0084848484848485" showDependencies="false" x="367.0" y="295.4411057692308" />
+  <SelectedNodes />
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
