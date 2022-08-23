@@ -6,6 +6,7 @@ import cn.tycoding.spring.beans.factory.config.ConfigurableListableBeanFactory;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * beanDefinition注册接口实现
@@ -36,4 +37,32 @@ public class DefaultListableBeanFactory extends AbstractAutowireCapableBeanFacto
         return beanDefinition;
     }
 
+    @Override
+    public void preInstantiateSingletons() throws BeansException {
+        beanDefinitionMap.forEach((beanName, beanDefinition) -> {
+            if (beanDefinition.isSingleton()) {
+                getBean(beanName);
+            }
+        });
+    }
+
+    @Override
+    public <T> Map<String, T> getBeansOfType(Class<T> type) throws BeansException {
+        Map<String, T> result = new HashMap<>();
+        beanDefinitionMap.forEach((beanName, beanDefinition) -> {
+            Class clazz = beanDefinition.getBeanClass();
+            // 判断两个类是否相同，或者是否继承关系
+            if (type.isAssignableFrom(clazz)) {
+                T bean = (T) getBean(beanName);
+                result.put(beanName, bean);
+            }
+        });
+        return result;
+    }
+
+    @Override
+    public String[] getBeanDefinitionNames() {
+        Set<String> beanNames = beanDefinitionMap.keySet();
+        return beanNames.toArray(new String[0]);
+    }
 }

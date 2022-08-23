@@ -18,4 +18,14 @@ public interface BeanFactory {
      * @throws BeansException
      */
     Object getBean(String beanName) throws BeansException;
+
+    /**
+     * 获取指定类型的Bean对象
+     * 在Spring源码中也是进行类型强制转换，不过会判断是否是此类型并做细化处理，在这里直接强制转换了
+     *
+     * @param beanName     bean名称
+     * @param requiredType Bean类型
+     */
+    <T> T getBean(String beanName, Class<T> requiredType) throws BeansException;
+
 }
