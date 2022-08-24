@@ -1,12 +1,18 @@
 package cn.tycoding.spring.beans.factory.support;
 
 import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.util.ClassUtil;
+import cn.hutool.core.util.StrUtil;
 import cn.tycoding.spring.beans.BeansException;
 import cn.tycoding.spring.beans.PropertyValue;
+import cn.tycoding.spring.beans.factory.DisposableBean;
+import cn.tycoding.spring.beans.factory.InitializingBean;
 import cn.tycoding.spring.beans.factory.config.AutowireCapableBeanFactory;
 import cn.tycoding.spring.beans.factory.config.BeanDefinition;
 import cn.tycoding.spring.beans.factory.config.BeanPostProcessor;
 import cn.tycoding.spring.beans.factory.config.BeanReference;
+
+import java.lang.reflect.Method;
 
 /**
  * BeanFactory的委托实现类，主要实现Bean的完整构建
@@ -39,6 +45,9 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
         } catch (Exception e) {
             throw new BeansException("Instantiation of bean failed", e);
         }
+
+        // 注册有销毁方法的Bean
+        registerDisposableBeanIfNecessary(beanName, bean, beanDefinition);
 
         registrySingleton(beanName, bean);
         return bean;
@@ -88,7 +97,11 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
         Object wrappedBean = applyBeanPostProcessorsBeforeInitialization(bean, beanName);
 
         // 初始化Bean
-        invokeInitMethods(beanName, bean, beanDefinition);
+        try {
+            invokeInitMethods(beanName, bean, beanDefinition);
+        } catch (Exception e) {
+            throw new BeansException("Invocation of init method bean[" + beanName + "] failed", e);
+        }
 
         // 执行BeanPostProcessor的后置处理器
         wrappedBean = applyBeanPostProcessorsAfterInitialization(bean, beanName);
@@ -129,8 +142,32 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
      * @param beanDefinition Bean定义
      * @return 初始化后的Bean实例
      */
-    protected void invokeInitMethods(String beanName, Object bean, BeanDefinition beanDefinition) {
-        System.out.println("初始化Bean [" + beanName + "]...");
+    protected void invokeInitMethods(String beanName, Object bean, BeanDefinition beanDefinition) throws Exception {
+        if (bean instanceof InitializingBean) {
+            // 执行子类的init方法
+            ((InitializingBean) bean).afterPropertiesSet();
+        }
+        String initMethod = beanDefinition.getInitMethod();
+        if (StrUtil.isNotEmpty(initMethod)) {
+            // 这里使用Hutool的反射工具类拿到此方法对象
+            Method method = ClassUtil.getPublicMethod(beanDefinition.getBeanClass(), initMethod);
+            if (method == null) {
+                throw new BeansException("Couldn't find a init method named '" + initMethod + "' on bean with name '" + beanName);
+            }
+            method.invoke(bean);
+        }
+    }
+
+    /**
+     * 注册有销毁方法的Bean
+     */
+    protected void registerDisposableBeanIfNecessary(String beanName, Object bean, BeanDefinition beanDefinition) {
+        // 只有singletons类型的Bean才有销毁方法
+        if (beanDefinition.isSingleton()) {
+            if (bean instanceof DisposableBean || StrUtil.isNotEmpty(beanDefinition.getDestroyMethod())) {
+                registerDisposableBean(beanName, new DisposableBeanAdapter(beanName, bean, beanDefinition.getDestroyMethod()));
+            }
+        }
     }
 
     protected Object createBeanInstance(BeanDefinition beanDefinition) {

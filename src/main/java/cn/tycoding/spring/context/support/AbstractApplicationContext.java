@@ -35,8 +35,6 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
 
     /**
      * 创建BeanFactory，并加载BeanDefinition
-     *
-     * @throws BeansException
      */
     protected abstract void refreshBeanFactory() throws BeansException;
 
@@ -59,6 +57,30 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader i
         for (BeanPostProcessor processor : beanFactoryPostProcessorMap.values()) {
             beanFactory.addBeanPostProcess(processor);
         }
+    }
+
+    @Override
+    public void close() {
+        doClose();
+    }
+
+    @Override
+    public void registerShutdownHook() {
+        Thread shutdownHook = new Thread() {
+            @Override
+            public void run() {
+                doClose();
+            }
+        };
+        Runtime.getRuntime().addShutdownHook(shutdownHook);
+    }
+
+    protected void doClose() {
+        destroyBeans();
+    }
+
+    protected void destroyBeans() {
+        getBeanFactory().destroySingletons();
     }
 
     @Override

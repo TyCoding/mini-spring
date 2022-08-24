@@ -12,8 +12,16 @@ public interface ConfigurableApplicationContext extends ApplicationContext {
 
     /**
      * 加载或刷新容器
-     *
-     * @throws BeansException
      */
     void refresh() throws BeansException;
+
+    /**
+     * 关闭应用上下文
+     */
+    void close();
+
+    /**
+     * 向虚拟机中注册一个钩子函数，在虚拟机关闭之前执行关闭容器等操作
+     */
+    void registerShutdownHook();
 }
