@@ -34,12 +34,19 @@ public class DefaultSingletonBeanRegistry implements SingletonBeanRegistry {
         disposableBeans.put(beanName, bean);
     }
 
+    public void removeSingleton(String beanName) {
+        singletonObjects.remove(beanName);
+    }
+
     public void destroySingletons() {
         Set<String> beanNames = disposableBeans.keySet();
         for (String beanName : beanNames) {
             DisposableBean disposableBean = disposableBeans.remove(beanName);
             try {
                 disposableBean.destroy();
+
+                // 销毁单例Bean
+                removeSingleton(beanName);
             } catch (Exception e) {
                 throw new BeansException("Destroy method on bean with name '" + beanName + "' throw a exception", e);
             }
