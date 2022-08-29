@@ -18,6 +18,7 @@ Mini版Spring框架实现。
 - [x] `06-bean-processor` [Bean容器扩展机制](docs/06-bean-processor/README.md)
 - [x] `07-application-context` [Spring应用上下文（refresh）](docs/07-application-context/README.md)
 - [x] `08-bean-init-destroy` [Bean的init和destroy（close）](docs/08-bean-init-destroy/README.md)
+- [x] `09-spring-aware` [Spring的Aware接口实现](docs/09-spring-aware/README.md)
 
 
 ## Tips
