@@ -50,7 +50,9 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
         // 注册有销毁方法的Bean
         registerDisposableBeanIfNecessary(beanName, bean, beanDefinition);
 
-        registrySingleton(beanName, bean);
+        if (beanDefinition.isSingleton()) {
+            registrySingleton(beanName, bean);
+        }
         return bean;
     }
 
