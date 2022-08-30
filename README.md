@@ -20,6 +20,7 @@ Mini版Spring框架实现。
 - [x] `08-bean-init-destroy` [Bean的init和destroy（close）](docs/08-bean-init-destroy/README.md)
 - [x] `09-spring-aware` [Spring的Aware接口实现](docs/09-spring-aware/README.md)
 - [x] `10-bean-scope` [Bean作用域（Bean生命周期）](docs/10-bean-scope/README.md)
+- [x] `11-factory-bean` [FactoryBean接口实现](docs/11-factory-bean/README.md)
 
 
 ## Tips

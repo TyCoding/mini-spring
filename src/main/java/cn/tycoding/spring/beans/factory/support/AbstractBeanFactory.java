@@ -14,18 +14,20 @@ import java.util.List;
  * @author tycoding
  * @since 2022/8/1
  */
-public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry implements ConfigurableBeanFactory {
+public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport implements ConfigurableBeanFactory {
 
     private final List<BeanPostProcessor> beanPostProcessors = new ArrayList<>();
 
     @Override
     public Object getBean(String beanName) throws BeansException {
-        Object bean = getSingleton(beanName);
-        if (bean != null) {
-            return bean;
+        Object sharedInstance = getSingleton(beanName);
+        if (sharedInstance != null) {
+            // 判断是否是FactoryBean
+            return getObjectFromFactoryBean(sharedInstance, beanName);
         }
         BeanDefinition beanDefinition = getBeanDefinition(beanName);
-        return createBean(beanName, beanDefinition);
+        Object bean = createBean(beanName, beanDefinition);
+        return getObjectFromFactoryBean(bean, beanName);
     }
 
     /**
