@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>cn.tycoding.spring.context.support.AbstractApplicationContext</OriginalElement>
+  <nodes>
+    <node x="204.54069767441865" y="148.0">cn.tycoding.spring.context.event.ApplicationContextEvent</node>
+    <node x="315.00000000000006" y="310.0">cn.tycoding.spring.context.support.AbstractApplicationContext</node>
+    <node x="582.5" y="148.0">cn.tycoding.spring.context.event.AbstractApplicationEventMulticaster</node>
+    <node x="330.50000000000006" y="230.0">cn.tycoding.spring.context.event.ContextRefreshedEvent</node>
+    <node x="589.5" y="230.0">cn.tycoding.spring.context.event.SimpleApplicationEventMulticaster</node>
+    <node x="512.125" y="66.0">cn.tycoding.spring.context.event.ApplicationListener</node>
+    <node x="101.50000000000006" y="230.0">cn.tycoding.spring.context.event.ContextClosedEvent</node>
+    <node x="762.125" y="66.0">cn.tycoding.spring.context.event.ApplicationEventMulticaster</node>
+    <node x="309.66569767441865" y="-14.0">cn.tycoding.spring.context.event.ApplicationEvent</node>
+    <node x="-139.0" y="230.0">cn.tycoding.spring.context.ApplicationContext</node>
+    <node x="-165.0" y="148.0">cn.tycoding.spring.context.event.ApplicationEventPublisher</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="cn.tycoding.spring.context.event.ApplicationContextEvent" target="cn.tycoding.spring.context.event.ApplicationEvent" relationship="GENERALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="326.04069767441865" y="40.0" />
+      <point x="354.91569767441865" y="40.0" />
+      <point x="-45.25" y="14.0" />
+    </edge>
+    <edge source="cn.tycoding.spring.context.ApplicationContext" target="cn.tycoding.spring.context.event.ApplicationEventPublisher" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="cn.tycoding.spring.context.support.AbstractApplicationContext" target="cn.tycoding.spring.context.ApplicationContext" relationship="REALIZATION">
+      <point x="-88.0" y="-14.0" />
+      <point x="359.0" y="289.0" />
+      <point x="-39.5" y="289.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="cn.tycoding.spring.context.event.ApplicationListener" target="cn.tycoding.spring.context.event.ApplicationEvent" relationship="DEPENDENCY">
+      <point x="0.0" y="-14.0" />
+      <point x="627.125" y="40.0" />
+      <point x="445.41569767441865" y="40.0" />
+      <point x="45.25" y="14.0" />
+    </edge>
+    <edge source="cn.tycoding.spring.context.event.AbstractApplicationEventMulticaster" target="cn.tycoding.spring.context.event.ApplicationEventMulticaster" relationship="REALIZATION">
+      <point x="82.5" y="-14.0" />
+      <point x="830.0" y="121.0" />
+      <point x="828.375" y="121.0" />
+      <point x="-66.25" y="14.0" />
+    </edge>
+    <edge source="cn.tycoding.spring.context.event.AbstractApplicationEventMulticaster" target="cn.tycoding.spring.context.event.ApplicationListener" relationship="TO_MANY">
+      <point x="-82.5" y="-14.0" />
+      <point x="665.0" y="121.0" />
+      <point x="627.125" y="121.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="cn.tycoding.spring.context.support.AbstractApplicationContext" target="cn.tycoding.spring.context.event.ContextClosedEvent" relationship="CREATE">
+      <point x="0.0" y="-14.0" />
+      <point x="447.0" y="279.0" />
+      <point x="206.00000000000006" y="279.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="cn.tycoding.spring.context.event.ContextClosedEvent" target="cn.tycoding.spring.context.event.ApplicationContextEvent" relationship="GENERALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="206.00000000000006" y="203.0" />
+      <point x="326.04069767441865" y="203.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="cn.tycoding.spring.context.event.SimpleApplicationEventMulticaster" target="cn.tycoding.spring.context.event.AbstractApplicationEventMulticaster" relationship="GENERALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="cn.tycoding.spring.context.support.AbstractApplicationContext" target="cn.tycoding.spring.context.event.ApplicationEventMulticaster" relationship="TO_ONE">
+      <point x="88.0" y="-14.0" />
+      <point x="535.0" y="289.0" />
+      <point x="923.0" y="289.0" />
+      <point x="923.0" y="121.0" />
+      <point x="960.875" y="121.0" />
+      <point x="66.25" y="14.0" />
+    </edge>
+    <edge source="cn.tycoding.spring.context.event.ContextRefreshedEvent" target="cn.tycoding.spring.context.event.ApplicationContextEvent" relationship="GENERALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="447.0" y="203.0" />
+      <point x="326.04069767441865" y="203.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="cn.tycoding.spring.context.support.AbstractApplicationContext" target="cn.tycoding.spring.context.event.ContextRefreshedEvent" relationship="CREATE">
+      <point x="0.0" y="-14.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="cn.tycoding.spring.context.support.AbstractApplicationContext" target="cn.tycoding.spring.context.event.SimpleApplicationEventMulticaster" relationship="CREATE">
+      <point x="0.0" y="-14.0" />
+      <point x="447.0" y="279.0" />
+      <point x="747.5" y="279.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="0.892333058532564" showDependencies="true" x="431.9696045824094" y="122.91518847006648" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Inner Classes</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
