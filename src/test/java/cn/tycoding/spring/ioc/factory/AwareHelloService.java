@@ -1,6 +1,8 @@
-package cn.tycoding.spring.beans.factory;
+package cn.tycoding.spring.ioc.factory;
 
 import cn.tycoding.spring.beans.BeansException;
+import cn.tycoding.spring.beans.factory.BeanFactory;
+import cn.tycoding.spring.beans.factory.BeanFactoryAware;
 import cn.tycoding.spring.context.ApplicationContext;
 import cn.tycoding.spring.context.ApplicationContextAware;
 

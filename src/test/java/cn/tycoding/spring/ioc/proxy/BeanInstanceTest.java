@@ -1,4 +1,4 @@
-package cn.tycoding.extend;
+package cn.tycoding.spring.ioc.proxy;
 
 import net.sf.cglib.proxy.Enhancer;
 import net.sf.cglib.proxy.MethodInterceptor;

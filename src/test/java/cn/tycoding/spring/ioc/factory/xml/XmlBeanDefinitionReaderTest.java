@@ -1,7 +1,8 @@
-package cn.tycoding.spring.beans.factory.xml;
+package cn.tycoding.spring.ioc.factory.xml;
 
 import cn.tycoding.spring.beans.factory.support.BeanDefinitionReader;
 import cn.tycoding.spring.beans.factory.support.DefaultListableBeanFactory;
+import cn.tycoding.spring.beans.factory.xml.XmlBeanDefinitionReader;
 import org.junit.Test;
 
 /**

@@ -10,18 +10,23 @@ Mini版Spring框架实现。
 
 ## Docs
 
-- [x] `01-bean-factory` [BeanFactory基础实现](docs/01-bean-factory/README.md)
-- [x] `02-bean-instance-strategy` [Bean实例化策略（JDK和Cglib动态代理）](docs/02-bean-instance-strategy/README.md)
-- [x] `03-bean-property-value` [填充Bean属性信息](docs/03-bean-property-value/README.md)
-- [x] `04-resource-loader` [资源加载器](docs/04-resource-loader/README.md)
-- [x] `05-xml-bean-definition` [XML文件装配Bean](docs/05-xml-bean-definition/README.md)
-- [x] `06-bean-processor` [Bean容器扩展机制](docs/06-bean-processor/README.md)
-- [x] `07-application-context` [Spring应用上下文（refresh）](docs/07-application-context/README.md)
-- [x] `08-bean-init-destroy` [Bean的init和destroy（close）](docs/08-bean-init-destroy/README.md)
-- [x] `09-spring-aware` [Spring的Aware接口实现](docs/09-spring-aware/README.md)
-- [x] `10-bean-scope` [Bean作用域（Bean生命周期）](docs/10-bean-scope/README.md)
-- [x] `11-factory-bean` [FactoryBean接口实现](docs/11-factory-bean/README.md)
-- [x] `12-spring-event` [Spring的事件机制](docs/12-spring-event/README.md)
+**Ioc**
+
+- `01-bean-factory` [BeanFactory基础实现](docs/01-bean-factory/README.md)
+- `02-bean-instance-strategy` [Bean实例化策略（JDK和Cglib动态代理）](docs/02-bean-instance-strategy/README.md)
+- `03-bean-property-value` [填充Bean属性信息](docs/03-bean-property-value/README.md)
+- `04-resource-loader` [资源加载器](docs/04-resource-loader/README.md)
+- `05-xml-bean-definition` [XML文件装配Bean](docs/05-xml-bean-definition/README.md)
+- `06-bean-processor` [Bean容器扩展机制](docs/06-bean-processor/README.md)
+- `07-application-context` [Spring应用上下文（refresh）](docs/07-application-context/README.md)
+- `08-bean-init-destroy` [Bean的init和destroy（close）](docs/08-bean-init-destroy/README.md)
+- `09-spring-aware` [Spring的Aware接口实现](docs/09-spring-aware/README.md)
+- `10-bean-scope` [Bean作用域（Bean生命周期）](docs/10-bean-scope/README.md)
+- `11-factory-bean` [FactoryBean接口实现](docs/11-factory-bean/README.md)
+- `12-spring-event` [Spring的事件机制](docs/12-spring-event/README.md)
+
+**Aop**
+
 
 
 ## Tips
@@ -29,3 +34,7 @@ Mini版Spring框架实现。
 插件说明：
 1. `.uml` 文件对应IDEA内置的 `Diagram` 插件；
 2. `.drawio` 文件对应 `Draw.io` 软件或者IDEA插件市场的 `Diagrams.net Integration` 插件；
+
+## Thanks
+
+[https://github.com/DerekYRC/mini-spring](https://github.com/DerekYRC/mini-spring)

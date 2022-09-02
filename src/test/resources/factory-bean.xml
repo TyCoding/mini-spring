@@ -6,7 +6,7 @@
         http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd"> <!-- bean definitions here -->
 
 
-    <bean id="helloFactoryBean" class="cn.tycoding.spring.beans.factory.HelloFactoryBean">
+    <bean id="helloFactoryBean" class="cn.tycoding.spring.ioc.factory.HelloFactoryBean">
         <property name="des" value="这是HelloFactoryBean对象本身"/>
     </bean>
 </beans>

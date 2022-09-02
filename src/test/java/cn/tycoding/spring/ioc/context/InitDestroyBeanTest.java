@@ -1,4 +1,4 @@
-package cn.tycoding.context;
+package cn.tycoding.spring.ioc.context;
 
 import cn.tycoding.spring.context.support.ClassPathXmlApplicationContext;
 import org.junit.Test;

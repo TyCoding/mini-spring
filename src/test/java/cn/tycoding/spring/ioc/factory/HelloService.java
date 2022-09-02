@@ -1,4 +1,4 @@
-package cn.tycoding.spring.beans.factory;
+package cn.tycoding.spring.ioc.factory;
 
 /**
  * @author tycoding

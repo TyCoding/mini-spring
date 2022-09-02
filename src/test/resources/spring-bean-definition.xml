@@ -6,13 +6,13 @@
         http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd"> <!-- bean definitions here -->
 
 
-    <bean id="helloService" class="cn.tycoding.spring.beans.factory.HelloService">
+    <bean id="helloService" class="cn.tycoding.spring.ioc.factory.HelloService">
         <property name="name" value="tycoding"/>
         <property name="des" value="this HelloService Bean"/>
         <property name="hello" ref="hello" />
     </bean>
 
-    <bean id="hello" class="cn.tycoding.spring.beans.factory.Hello">
+    <bean id="hello" class="cn.tycoding.spring.ioc.factory.Hello">
         <property name="msg" value="hello tycoding"/>
     </bean>
 </beans>

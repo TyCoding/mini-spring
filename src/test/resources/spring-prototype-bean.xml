@@ -5,6 +5,6 @@
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd"> <!-- bean definitions here -->
 
-    <bean id="singletonHello" class="cn.tycoding.spring.beans.factory.Hello"/>
-    <bean id="prototypeHello" class="cn.tycoding.spring.beans.factory.Hello" scope="prototype"/>
+    <bean id="singletonHello" class="cn.tycoding.spring.ioc.factory.Hello"/>
+    <bean id="prototypeHello" class="cn.tycoding.spring.ioc.factory.Hello" scope="prototype"/>
 </beans>

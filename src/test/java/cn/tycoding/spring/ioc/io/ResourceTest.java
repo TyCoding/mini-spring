@@ -1,6 +1,8 @@
-package cn.tycoding.spring.core.io;
+package cn.tycoding.spring.ioc.io;
 
 import cn.hutool.core.io.IoUtil;
+import cn.tycoding.spring.core.io.DefaultResourceLoader;
+import cn.tycoding.spring.core.io.Resource;
 import org.junit.Test;
 
 import java.io.InputStream;

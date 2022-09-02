@@ -1,4 +1,4 @@
-package cn.tycoding.extend;
+package cn.tycoding.spring.ioc.proxy;
 
 import net.sf.cglib.proxy.Enhancer;
 import net.sf.cglib.proxy.MethodInterceptor;
@@ -6,7 +6,6 @@ import org.junit.Test;
 import sun.misc.ProxyGenerator;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;

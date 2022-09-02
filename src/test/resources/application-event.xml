@@ -6,8 +6,8 @@
         http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd"> <!-- bean definitions here -->
 
 
-    <bean id="contextClosedEventListener" class="cn.tycoding.context.event.ContextClosedEventListener"/>
-    <bean id="contextRefreshedEventListener" class="cn.tycoding.context.event.ContextRefreshedEventListener"/>
-    <bean id="customEventListener" class="cn.tycoding.context.event.CustomEventListener"/>
+    <bean id="contextClosedEventListener" class="cn.tycoding.spring.ioc.context.event.ContextClosedEventListener"/>
+    <bean id="contextRefreshedEventListener" class="cn.tycoding.spring.ioc.context.event.ContextRefreshedEventListener"/>
+    <bean id="customEventListener" class="cn.tycoding.spring.ioc.context.event.CustomEventListener"/>
 
 </beans>

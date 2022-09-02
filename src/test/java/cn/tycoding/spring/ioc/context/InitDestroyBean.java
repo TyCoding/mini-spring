@@ -1,4 +1,4 @@
-package cn.tycoding.context;
+package cn.tycoding.spring.ioc.context;
 
 import cn.tycoding.spring.beans.factory.DisposableBean;
 import cn.tycoding.spring.beans.factory.InitializingBean;

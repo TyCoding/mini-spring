@@ -6,7 +6,7 @@
         http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd"> <!-- bean definitions here -->
 
 
-    <bean id="initDestroyBean" class="cn.tycoding.context.InitDestroyBean" init-method="customInitMethod" destroy-method="customDestroyMethod">
+    <bean id="initDestroyBean" class="cn.tycoding.spring.ioc.context.InitDestroyBean" init-method="customInitMethod" destroy-method="customDestroyMethod">
         <property name="name" value="tycoding"/>
     </bean>
 

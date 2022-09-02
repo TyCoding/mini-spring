@@ -1,7 +1,7 @@
-package cn.tycoding.spring.beans.factory;
+package cn.tycoding.spring.ioc.factory;
 
-import cn.tycoding.spring.beans.factory.processor.CustomBeanFactoryPostProcessor;
-import cn.tycoding.spring.beans.factory.processor.CustomBeanPostProcessor;
+import cn.tycoding.spring.ioc.factory.processor.CustomBeanFactoryPostProcessor;
+import cn.tycoding.spring.ioc.factory.processor.CustomBeanPostProcessor;
 import cn.tycoding.spring.beans.factory.support.BeanDefinitionReader;
 import cn.tycoding.spring.beans.factory.support.DefaultListableBeanFactory;
 import cn.tycoding.spring.beans.factory.xml.XmlBeanDefinitionReader;
