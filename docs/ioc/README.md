@@ -2,7 +2,7 @@
 
 > Tips
 
-阅读本篇文档之前，默认读者已经学习了之前 [1-12] 章节的内容并完成的相应的编码；本篇文档主要围绕前12章节的内容总结，围绕IOC核心思想整体分析编码的实现逻辑。
+阅读本篇文档之前，默认读者已经学习了之前 [1-12] 章节的内容并完成的相应的编码；本篇文档主要对前12章节的内容总结，围绕IOC核心思想整体分析编码的实现逻辑。
 
 ## 引入
 
@@ -31,7 +31,17 @@ IOC强调了两个概念：
 
 ![](imgs/MIK-SdMEml.png)
 
-总结一下：`ApplicationContext`接口代表了IOC容器；`BeanFactory`接口提供了具体管理容器中对象的方式；加载过程如下：
+总结一下上面的描述，Spring的IOC容器有那些特点：
+
+1. `beans`和`context`包是IOC的基础，`beans`包的核心是BeanFactory接口，`context`包的核心是ApplicationContext接口；
+2. ApplicationContext接口继承自BeanFactory接口，也就是ApplicationContext具有BeanFactory接口的全部功能；
+3. BeanFactory提供了配置框架和基础功能，ApplicationContext接口则增加了更多企业定制的功能；
+4. 描述Bean元数据配置通过XML、Java注解、Java代码表示；XML配置例如`<bean>`标签、Java注解例如`@Autowire`注解；
+5. ApplicationContext是Spring的应用上下文，他提供了Spring开箱即用的几个接口实现，核心是`refresh`接口；
+6. XML文件是定义配置元数据的传统格式，因此截至目前的代码中我们仍是通过创建ClassPathXmlApplicationContext实例对象来加载ApplicationContext；
+
+
+接着我们再描述一下在ApplicationContext层面，Bean加载的大概流程：
 
 1. ApplicationContext作为入口，Spring启动时便会通过`refresh()`方法作为入口预先装配所有Bean实例；
 2. 接着通过XML、注解、代码等方式配置Bean元数据信息以及依赖关系；
@@ -47,7 +57,7 @@ IOC强调了两个概念：
 
 ![](imgs/MIK-uuJSTX.png)
 
-接着，我们先用语言描述Bean的加载流程：
+接着，从BeanFactory接口维度描述下Bean的加载流程：
 
 1. 通过Resource接口解析XML文件、注解等方式拿到Bean实例信息以及依赖关系；
 2. 通过InstantiationStrategy接口拿到Bean实例化策略，Spring默认采用Cglib动态代理策略生成Bean实例；
@@ -59,8 +69,7 @@ IOC强调了两个概念：
 8. 完成Bean的实例化、初始化（此时Bean的加载流程已经结束）
 
 
-ApplicationContext对象的`refresh()`是整个Bean加载入口，他会在Spring启动时预先加载所有Bean实例；并通过事件机制在关闭的时候销毁Bean；
-那么接着从ApplicationContext上下文全局角度分析整个流程：
+然后再从ApplicationContext上下文的层面分析整个启动流程：
 
 1. 实例化BeanFactory对象并加载所有BeanDefinition信息；
 2. 注入各种BeanPostProcessor对象，并在Bean实例化前和初始化前后过程中影响实例化和初始化结果
@@ -68,5 +77,8 @@ ApplicationContext对象的`refresh()`是整个Bean加载入口，他会在Sprin
 4. 注入Spring的事件机制，保证在ApplicationContext的初始化、刷新、关闭时监听到事件变化；
 5. 以上对象加载完毕后最后再进行Bean的实例化，进行上面的Bean加载流程；
 
+最后，通过简单的流程图描述下上述流程：
+
+![](imgs/MIK-O0PMBU.png)
 
 
