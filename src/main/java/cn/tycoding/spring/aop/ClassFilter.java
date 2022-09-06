@@ -8,6 +8,8 @@ package cn.tycoding.spring.aop;
  */
 public interface ClassFilter {
 
-
+    /**
+     * 检查该Class是否符合切入点
+     */
     boolean matches(Class<?> clazz);
 }

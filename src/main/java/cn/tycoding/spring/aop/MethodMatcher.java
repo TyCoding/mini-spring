@@ -10,5 +10,8 @@ import java.lang.reflect.Method;
  */
 public interface MethodMatcher {
 
+    /**
+     * 检查该函数是否符合切入点
+     */
     boolean matches(Method method, Class<?> targetClass);
 }
