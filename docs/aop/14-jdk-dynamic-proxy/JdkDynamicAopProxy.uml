@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>cn.tycoding.spring.aop.framework.JdkDynamicAopProxy</OriginalElement>
+  <nodes>
+    <node x="266.0" y="142.0">cn.tycoding.spring.aop.framework.JdkDynamicAopProxy</node>
+    <node x="-133.0" y="-14.0">cn.tycoding.spring.aop.TargetSource</node>
+    <node x="243.5" y="64.0">cn.tycoding.spring.aop.framework.ReflectiveMethodInvocation</node>
+    <node x="40.0" y="-14.0">org.aopalliance.intercept.MethodInterceptor</node>
+    <node x="528.5" y="64.0">cn.tycoding.spring.aop.framework.AopProxy</node>
+    <node x="50.5" y="64.0">cn.tycoding.spring.aop.framework.AdvisedSupport</node>
+    <node x="254.0" y="-14.0">cn.tycoding.spring.aop.MethodMatcher</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="cn.tycoding.spring.aop.framework.JdkDynamicAopProxy" target="cn.tycoding.spring.aop.framework.AdvisedSupport" relationship="TO_ONE">
+      <point x="-73.33333333333331" y="-14.0" />
+      <point x="302.6666666666667" y="117.0" />
+      <point x="137.0" y="117.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="cn.tycoding.spring.aop.framework.AdvisedSupport" target="org.aopalliance.intercept.MethodInterceptor" relationship="TO_ONE">
+      <point x="0.0" y="-14.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="cn.tycoding.spring.aop.framework.AdvisedSupport" target="cn.tycoding.spring.aop.TargetSource" relationship="TO_ONE">
+      <point x="0.0" y="-14.0" />
+      <point x="137.0" y="39.0" />
+      <point x="-56.5" y="39.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="cn.tycoding.spring.aop.framework.JdkDynamicAopProxy" target="cn.tycoding.spring.aop.framework.AopProxy" relationship="REALIZATION">
+      <point x="73.33333333333331" y="-14.0" />
+      <point x="449.33333333333326" y="117.0" />
+      <point x="591.0" y="117.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="cn.tycoding.spring.aop.framework.AdvisedSupport" target="cn.tycoding.spring.aop.MethodMatcher" relationship="TO_ONE">
+      <point x="0.0" y="-14.0" />
+      <point x="137.0" y="39.0" />
+      <point x="340.0" y="39.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="cn.tycoding.spring.aop.framework.JdkDynamicAopProxy" target="cn.tycoding.spring.aop.framework.ReflectiveMethodInvocation" relationship="CREATE">
+      <point x="1.4210854715202004E-14" y="-14.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="1.5" showDependencies="true" x="270.5" y="88.0" />
+  <SelectedNodes />
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
