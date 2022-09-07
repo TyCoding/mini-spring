@@ -33,6 +33,7 @@ Mini版Spring框架实现。
 
 - `13-aspectj-expression` [AspectJ切面表达式](docs/aop/13-aspectj-expression/README.md)
 - `14-jdk-dynamic-proxy` [Aop之JDK动态代理实现（拦截器实现）](docs/aop/14-jdk-dynamic-proxy/README.md)
+- `15-cglib-dynamic-proxy` [Aop之Cglib动态代理实现](docs/aop/15-cglib-dynamic-proxy/README.md)
 - `16-proxy-factory` [Aop之代理工厂实现](docs/aop/16-proxy-factory/README.md)
 
 
