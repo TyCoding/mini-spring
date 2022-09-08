@@ -85,3 +85,9 @@ public class ProxyFactory {
 **注意：** 这里我们简化了代码实现，不再做过多判断
 
 
+## 总结
+
+到此为止，结合上面对ProxyFactory的实现，整理下Proxy和过滤器的关系流程图：
+
+![](imgs/MIK-NNC8nA.png)
+
