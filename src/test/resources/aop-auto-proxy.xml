@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util" xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd"> <!-- bean definitions here -->
+
+
+    <bean id="people" class="cn.tycoding.spring.aop.proxy.Student"/>
+
+    <bean class="cn.tycoding.spring.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"/>
+
+    <bean id="pointcutAdvisor" class="cn.tycoding.spring.aop.aspectj.AspectJExpressionPointcutAdvisor">
+        <property name="expression" value="execution( * cn.tycoding.spring.aop.proxy.People.say(..))"/>
+        <property name="advice" ref="methodInterceptor"/>
+    </bean>
+
+    <bean id="methodInterceptor" class="cn.tycoding.spring.aop.framework.adapter.MethodBeforeAdviceInterceptor">
+        <property name="advice" ref="beforeAdvice"/>
+    </bean>
+
+    <bean id="beforeAdvice" class="cn.tycoding.spring.aop.advice.PeopleBeforeAdvice"/>
+
+</beans>

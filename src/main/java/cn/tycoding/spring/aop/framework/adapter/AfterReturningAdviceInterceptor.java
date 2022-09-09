@@ -14,7 +14,14 @@ public class AfterReturningAdviceInterceptor implements MethodInterceptor {
 
     private AfterReturningAdvice advice;
 
+    public AfterReturningAdviceInterceptor() {
+    }
+
     public AfterReturningAdviceInterceptor(AfterReturningAdvice advice) {
+        this.advice = advice;
+    }
+
+    public void setAdvice(AfterReturningAdvice advice) {
         this.advice = advice;
     }
 
