@@ -3,6 +3,7 @@ package cn.tycoding.spring.aop.advice;
 import cn.tycoding.spring.aop.MethodMatcher;
 import cn.tycoding.spring.aop.TargetSource;
 import cn.tycoding.spring.aop.aspectj.AspectJExpressionPointcut;
+import cn.tycoding.spring.aop.aspectj.AspectJExpressionPointcutAdvisor;
 import cn.tycoding.spring.aop.framework.AdvisedSupport;
 import cn.tycoding.spring.aop.framework.CglibAopProxy;
 import cn.tycoding.spring.aop.framework.adapter.AfterReturningAdviceInterceptor;
@@ -35,6 +36,30 @@ public class AdviceTest {
         advisedSupport.setTargetSource(targetSource);
         advisedSupport.setMethodInterceptor(interceptor);
         advisedSupport.setMethodMatcher(methodMatcher);
+
+        People proxy = (People) new CglibAopProxy(advisedSupport).getProxy();
+        proxy.say();
+    }
+
+    @Test
+    public void t2() {
+        People people = new Student();
+
+        // 被代理的目标对象
+        TargetSource targetSource = new TargetSource(people);
+
+        // 后置拦截器
+        AfterReturningAdviceInterceptor interceptor = new AfterReturningAdviceInterceptor(new PeopleAfterAdvice());
+
+        // 定义一个切面Advisor=切点+通知
+        AspectJExpressionPointcutAdvisor advisor = new AspectJExpressionPointcutAdvisor();
+        advisor.setAdvice(interceptor);
+        advisor.setExpression("execution( * cn.tycoding.spring.aop.proxy.People.say(..))");
+
+        AdvisedSupport advisedSupport = new AdvisedSupport();
+        advisedSupport.setTargetSource(targetSource);
+        advisedSupport.setMethodInterceptor(interceptor);
+        advisedSupport.setMethodMatcher(advisor.getPointcut().getMethodMatcher());
 
         People proxy = (People) new CglibAopProxy(advisedSupport).getProxy();
         proxy.say();
