@@ -1,6 +1,8 @@
 package cn.tycoding.spring.aop.framework.autoproxy;
 
+import cn.tycoding.spring.aop.Advisor;
 import cn.tycoding.spring.aop.ClassFilter;
+import cn.tycoding.spring.aop.Pointcut;
 import cn.tycoding.spring.aop.TargetSource;
 import cn.tycoding.spring.aop.aspectj.AspectJExpressionPointcutAdvisor;
 import cn.tycoding.spring.aop.framework.AdvisedSupport;
@@ -11,6 +13,7 @@ import cn.tycoding.spring.beans.factory.BeanFactoryAware;
 import cn.tycoding.spring.beans.factory.config.BeanDefinition;
 import cn.tycoding.spring.beans.factory.config.InstantiationAwareBeanPostProcessor;
 import cn.tycoding.spring.beans.factory.support.DefaultListableBeanFactory;
+import org.aopalliance.aop.Advice;
 import org.aopalliance.intercept.MethodInterceptor;
 
 import java.util.Collection;
@@ -30,6 +33,10 @@ public class DefaultAdvisorAutoProxyCreator implements InstantiationAwareBeanPos
 
     @Override
     public Object postProcessBeforeInstantiation(Class<?> beanClass, String beanName) throws BeansException {
+        if (isInfrastructureClass(beanClass)) {
+            return null;
+        }
+
         // 拿到所有的切面
         Collection<AspectJExpressionPointcutAdvisor> advisors =
                 beanFactory.getBeansOfType(AspectJExpressionPointcutAdvisor.class).values();
@@ -60,6 +67,10 @@ public class DefaultAdvisorAutoProxyCreator implements InstantiationAwareBeanPos
         }
 
         return beanClass;
+    }
+
+    private boolean isInfrastructureClass(Class<?> beanClass) {
+        return Advice.class.isAssignableFrom(beanClass) || Pointcut.class.isAssignableFrom(beanClass) || Advisor.class.isAssignableFrom(beanClass);
     }
 
     @Override

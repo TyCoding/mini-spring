@@ -37,6 +37,7 @@ Mini版Spring框架实现。
 - `16-proxy-factory` [Aop之代理工厂实现](docs/aop/16-proxy-factory/README.md)
 - `17-aop-advice` [Aop之通知类型](docs/aop/17-aop-advice/README.md)
 - `18-aop-advisor` [Aop之切面Advisor](docs/aop/18-aop-advisor/README.md)
+- `19-auto-proxy` [Aop之自动代理](docs/aop/19-auto-proxy/README.md)
 
 
 ## Tips

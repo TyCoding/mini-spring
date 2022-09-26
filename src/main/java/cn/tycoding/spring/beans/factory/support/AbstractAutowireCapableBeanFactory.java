@@ -24,7 +24,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
      * 引入实例化策略类
      * 在Spring源码中，此策略的默认实现类是CglibSubclassingInstantiationStrategy
      */
-    private InstantiationStrategy instantiationStrategy = new CglibSubclassingInstantiationStrategy();
+    private InstantiationStrategy instantiationStrategy = new SimpleInstantiationStrategy();
 
     @Override
     protected Object createBean(String beanName, BeanDefinition beanDefinition) throws BeansException {
@@ -56,8 +56,8 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
         for (BeanPostProcessor processor : getBeanPostProcessors()) {
             // 只执行这种用于实例化的BeanPostProcessor
             if (processor instanceof InstantiationAwareBeanPostProcessor) {
-                InstantiationAwareBeanPostProcessor result =
-                        (InstantiationAwareBeanPostProcessor) ((InstantiationAwareBeanPostProcessor) processor).postProcessBeforeInstantiation(beanClass, beanName);
+                // 注意：这里使用了JDK代理(Bean实例创建的代理方式)，否则用Cglib代理时无法直接进行强转（要先获取代理目标对象实例才行）
+                Object result = ((InstantiationAwareBeanPostProcessor) processor).postProcessBeforeInstantiation(beanClass, beanName);
                 if (result != null) {
                     return result;
                 }
